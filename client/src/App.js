@@ -1,28 +1,31 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [ user, setUser ] = useState(null)
 
   useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
-  }, []);
+    fetch('/auth')
+    .then(res => {
+      if (res.ok) {
+        res.json().then(user => setUser(user))
+      } else {
+        res.json().then(error => {
+          console.clear()
+          console.log(error.error)
+        })
+      }
+    })
+  }, [])
 
   return (
-    <BrowserRouter>
-      <div className="App">
+      <div className="app">
         <Switch>
-          <Route path="/testing">
-            <h1>Test Route</h1>
-          </Route>
-          <Route path="/">
-            <h1>Page Count: {count}</h1>
+          <Route exact path="/">
+            <h1>Home</h1>
           </Route>
         </Switch>
       </div>
-    </BrowserRouter>
   );
 }
 
