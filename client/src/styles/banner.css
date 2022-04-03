@@ -1,0 +1,41 @@
+#landing-content {
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('../assets/images/banner.jpg');
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    border-top-right-radius: 2.5em;
+    border-bottom-right-radius: 2.5em;
+}
+
+#landing-content header {
+    height: 10%;
+    padding: 1em;
+}
+
+#logo-container {
+    width: 25%;
+    max-width: 200px;
+}
+
+#banner-content {
+    position: absolute;
+    top: 30%;
+    left: 10%;
+    width: 60%;
+}
+
+#banner-content h1 {
+    color: #fff;
+    line-height: 100%;
+    font-size: 5em;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+}
+
+#banner-content p {
+    color: #fff;
+    font-weight: 400;
+    font-size: 1.25em;
+}

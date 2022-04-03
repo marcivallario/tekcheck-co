@@ -1,5 +1,8 @@
+import Home from "./components/Home";
+
 import { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
+import "./styles/global.css"
 
 function App() {
   const [ user, setUser ] = useState(null)
@@ -22,7 +25,7 @@ function App() {
       <div className="app">
         <Switch>
           <Route exact path="/">
-            <h1>Home</h1>
+            <Home />
           </Route>
         </Switch>
       </div>

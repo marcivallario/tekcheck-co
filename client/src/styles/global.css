@@ -1,0 +1,53 @@
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+img,
+picture {
+  width: 100%;
+  display: block;
+}
+
+/* Global Styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
+html {
+    scroll-behavior: smooth;
+    font-family: 'Manrope', sans-serif;
+    min-width: 300px;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, button {
+    font-family: 'Manrope', sans-serif;
+    color: rgb(41, 41, 41)
+}
+
+button {
+    background-color: #FF7E3D;
+    border: 2px solid #FF7E3D;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 40px;
+    padding: 10px 30px;
+    font-weight: 800;
+    letter-spacing: .05em;
+    margin-top: 40px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: transparent;
+    border: 2px solid #FF7E3D;
+    color: #FF7E3D;
+}
+
+button:active {
+    background-color: grey;
+    border: 2px solid grey;
+    color: #fff;
+}
