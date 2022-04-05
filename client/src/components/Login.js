@@ -40,10 +40,10 @@ function Login({ setUser }) {
     return (
         <div id="login">
             <div id="login-container">
-                <form id="login-form" onSubmit={handleSubmit}>
-                    <input name="email" placeholder="Email" className="user-input" onChange={handleChange}></input>
+                <form id="login-form" className="auth-form" onSubmit={handleSubmit}>
+                    <input type="text" name="email" placeholder="Email" className="user-input" onChange={handleChange}></input>
                     <input name="password" type="password" placeholder="Password" className="user-input" onChange={handleChange}></input>
-                    {errors ? <div className="error-container"><p className="error">{errors.error}</p></div> : <div></div>}
+                    {errors ? <div className="error-container"><p className="error">{errors.error}</p></div> : null}
                     <input type="submit" value="Login" className="form-button"></input>
                 </form>
                 {/* <div id="call-to-signup">

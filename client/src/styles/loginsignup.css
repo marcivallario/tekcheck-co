@@ -3,6 +3,8 @@
     flex-direction: column;
     align-items: center;
     padding-top: 2em;
+    min-height: 100vh;
+    position: relative;
 }
 
 .css-1aquho2-MuiTabs-indicator {
@@ -20,5 +22,47 @@
     font-family: 'Manrope', sans-serif !important;
 }
 
+.tab-panel {
+    width: 100%;
+}
 
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+
+.auth-form input {
+    width: 65%;
+
+}
+
+.tab-panel {
+    align-self: center;
+   
+}
+
+#login, #signup {
+    margin-top: 5em;
+}
+
+.tab-panel input[type=text], .tab-panel input[type=password] {
+    border: 1px solid rgb(180, 180, 180);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.tab-panel input[type=submit] {
+    border-radius: 10px;
+    background-color: #FF7E3D;
+    border: 2px solid #FF7E3D;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 5px;
+    font-weight: 800;
+    letter-spacing: .05em;
+    cursor: pointer;
+    margin-top: 2em;
+}
 

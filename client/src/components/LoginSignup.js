@@ -21,7 +21,7 @@ export default function LoginSignup() {
     }
 
     return (
-        <div className="col-md-4" id="login-signup">
+        <div className="col-12 col-lg-4" id="login-signup">
             <Tabs value={value} onChange={handleChange}>
                 <Tab label="Login" />
                 <Tab label="Signup" />
