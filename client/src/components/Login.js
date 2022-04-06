@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { NavLink, useHistory } from "react-router-dom";
-// import '../styles/login.css';
 
 function Login({ setUser }) {
     let history = useHistory();

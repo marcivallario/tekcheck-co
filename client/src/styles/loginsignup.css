@@ -7,21 +7,6 @@
     position: relative;
 }
 
-.css-1aquho2-MuiTabs-indicator {
-    background-color: #FF7E3D !important;
-}
-
-.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
-    color: #FF7E3D !important;
-    font-family: 'Manrope', sans-serif !important;
-    font-weight: 600;
-    border: none;
-}
-
-.css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
-    font-family: 'Manrope', sans-serif !important;
-}
-
 .tab-panel {
     width: 100%;
 }

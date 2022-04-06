@@ -44,7 +44,28 @@
 
 #get-started {
     display: none;
+    background-color: #FF7E3D;
+    border: 2px solid #FF7E3D;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 40px;
+    padding: 10px 30px;
+    font-weight: 800;
+    letter-spacing: .05em;
+    cursor: pointer;
 }
+
+#get-started:hover {
+    background-color: transparent;
+    border: 2px solid #FF7E3D;
+    color: #FF7E3D;
+}
+
+#get-started:active {
+    background-color: grey;
+    border: 2px solid grey;
+    color: #fff;
+} 
 
 @media (max-width: 576px) {
     #banner-content p {

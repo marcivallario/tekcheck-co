@@ -22,7 +22,26 @@ export default function LoginSignup() {
 
     return (
         <div className="col-12 col-lg-4" id="login-signup">
-            <Tabs value={value} onChange={handleChange}>
+            <Tabs value={value} 
+            onChange={handleChange}
+            sx={{
+                '& .MuiTabs-indicator': {
+                    backgroundColor: '#FF7E3D',
+                },
+                '& .MuiButtonBase-root': {
+                    color: '#FF7E3D',
+                    fontFamily: 'Manrope',
+                    fontWeight: '600'
+                },
+                '& .MuiTab-root': {
+                    color: '#FF7E3D',
+                    fontWeight: '600'
+                },
+                '& .Mui-selected': {
+                    color: '#FF7E3D !important',
+                }
+            }}
+            >
                 <Tab label="Login" />
                 <Tab label="Signup" />
             </Tabs>
