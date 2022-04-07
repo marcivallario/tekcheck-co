@@ -21,11 +21,15 @@ function App() {
     })
   }, [])
 
+  if (user) {
+    return(<div>Home</div>)
+  }
+
   return (
       <div className="app">
         <Switch>
           <Route exact path="/">
-            <Home />
+            <Home setUser={setUser}/>
           </Route>
         </Switch>
       </div>

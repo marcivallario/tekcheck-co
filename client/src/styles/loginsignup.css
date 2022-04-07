@@ -30,6 +30,7 @@
 
 #login, #signup {
     margin-top: 5em;
+    margin-bottom: 5em;
 }
 
 .tab-panel input[type=text], .tab-panel input[type=password] {

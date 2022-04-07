@@ -14,7 +14,7 @@ function TabPanel(props) {
     )
 }
 
-export default function LoginSignup() {
+function LoginSignup({ setUser }) {
     const [ value, setValue ] = useState(0);
     function handleChange(e, val) {
         setValue(val);
@@ -49,9 +49,10 @@ export default function LoginSignup() {
                 <Login />
             </TabPanel>
             <TabPanel value={value} index={1}>
-                <Signup />
+                <Signup setUser={setUser}/>
             </TabPanel>
         </div>
     ) 
 };
 
+export default LoginSignup;
