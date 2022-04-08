@@ -45,9 +45,6 @@ function Login({ setUser }) {
                     {errors ? <div className="error-container"><p className="error">{errors.error}</p></div> : null}
                     <input type="submit" value="Login" className="form-button"></input>
                 </form>
-                {/* <div id="call-to-signup">
-                    <p>Not a member? <NavLink to="/signup" exact>Sign up now! </NavLink></p>
-                </div> */}
             </div>
         </div>
     )

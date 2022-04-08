@@ -1,6 +1,8 @@
+import './dashboard.css';
+
 function Dashboard() {
     return (
-        <div>Dashboard</div>
+        <div id="dashboard">Dashboard</div>
     )
 }
 
