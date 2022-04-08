@@ -1,8 +1,9 @@
-import Home from "./components/Home";
+import Home from "./pages/homepage/Home";
+import Dashboard from "./pages/dashboard/Dashboard";
 
 import { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
-import "./styles/global.css"
+import "./app.css"
 
 function App() {
   const [ user, setUser ] = useState(null)
@@ -22,7 +23,10 @@ function App() {
   }, [])
 
   if (user) {
-    return(<div>Home</div>)
+    return(
+      <div className="app">
+        <Dashboard />
+      </div>)
   }
 
   return (

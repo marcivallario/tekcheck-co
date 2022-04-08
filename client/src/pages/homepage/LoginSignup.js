@@ -1,9 +1,9 @@
-import Login from './Login';
-import Signup from './Signup';
+import Login from './components/Login';
+import Signup from './components/Signup';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { useState } from 'react';
-import '../styles/loginsignup.css'
+import './loginsignup.css'
 
 function TabPanel(props) {
     const { children, value, index } = props;
@@ -46,10 +46,10 @@ function LoginSignup({ setUser }) {
                 <Tab label="Signup" />
             </Tabs>
             <TabPanel value={value} index={0}>
-                <Login />
+                <Login setUser={setUser} />
             </TabPanel>
             <TabPanel value={value} index={1}>
-                <Signup setUser={setUser}/>
+                <Signup setUser={setUser} />
             </TabPanel>
         </div>
     ) 

@@ -1,6 +1,6 @@
-import Banner from "./Banner";
+import Banner from "./components/Banner";
 import LoginSignup from "./LoginSignup";
-import '../styles/home.css'
+import './home.css'
 
 function Home({ setUser }) {
     return (
