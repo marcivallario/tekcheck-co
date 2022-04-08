@@ -22,7 +22,7 @@ function Login({ setUser }) {
             if (res.ok) {
                 res.json().then(user => {
                     setUser(user)
-                    history.push("/")
+                    history.push("/dashboard")
                 })
              } else {
                 res.json().then(errorResponse => setErrors(errorResponse))
