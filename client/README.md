@@ -68,3 +68,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# Branding Styles
+
+## Color Palette
+Primary: #FF7E3D // Orange
+Secondary: #72DCE8 // Teal
+Tertiary: #B06DE3 // Purple
+Quaternary: #FFDF3D // Yellow

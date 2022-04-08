@@ -1,12 +1,12 @@
 import { NavLink } from "react-router-dom";
-import '../styles/banner.css';
+import './banner.css';
 
 function Banner() {
     return (
             <div className="col-12 col-lg-8" id="landing-content">
                 <header>
                     <div id="logo-container" className="img-container">
-                        <NavLink to="/" exact><img src={require('../assets/images/logo.png')} alt="logo" title="TrekCheck" /></NavLink>
+                        <NavLink to="/" exact><img src={require('../../../assets/images/logo.png')} alt="logo" title="TrekCheck" /></NavLink>
                     </div>
                 </header>
                     <div id="banner-content">

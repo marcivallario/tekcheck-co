@@ -52,3 +52,18 @@
     margin-top: 2em;
 }
 
+.error-container {
+    background: rgba(255, 0, 0, 0.288);
+    border: 2px solid red;
+    padding: 10px;
+    text-align: center;
+    font-style: italic;
+    width: 65%;
+}
+
+.error-container p {
+    margin-bottom: 0;
+    font-size: .75em;
+    color: rgb(70, 70, 70);
+}
+
