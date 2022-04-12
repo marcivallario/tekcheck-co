@@ -1,10 +1,9 @@
 import { Route, Redirect } from 'react-router-dom';
 
 const PrivateRoute = ({component: Component, user, ...rest}) => {
-    debugger
     return (
         <Route {...rest} render={props => (
-            user ? <Component {...props} /> : <Redirect to="/" />
+            user ? <Component {...props} /> : <Redirect to="/dashboard" />
         )} />
     );
 };
