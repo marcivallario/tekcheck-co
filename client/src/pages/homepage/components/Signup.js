@@ -29,7 +29,7 @@ function Signup({ setUser }) {
         .then(res => {
             if (res.ok) {
                 res.json().then(setUser)
-                history.push("/")
+                history.push("/dashboard")
                 setFormData({
                     email: '',
                     password: ''

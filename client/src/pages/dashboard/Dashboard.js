@@ -2,7 +2,9 @@ import './dashboard.css';
 
 function Dashboard() {
     return (
-        <div id="dashboard">Dashboard</div>
+        <div>
+            This is my dashboard.
+        </div>
     )
 }
 
