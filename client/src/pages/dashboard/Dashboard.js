@@ -1,15 +1,10 @@
-import { Redirect } from 'react-router-dom';
 import './dashboard.css';
 
-function Dashboard({ user }) {
-    if (!user) {
-        return (
-            <Redirect to="/" /> 
-        )
-    }
-
+function Dashboard() {
     return (
-        <div id="dashboard">Dashboard Rendered</div>
+        <div>
+            This is my dashboard.
+        </div>
     )
 }
 

@@ -1,12 +1,11 @@
 import Home from "./pages/homepage/Home";
-import Dashboard from "./pages/dashboard/Dashboard";
 import NotFound from "./common/components/NotFound";
+import Navigation from "./common/components/Navigation";
 
-import { lazy, Suspense } from 'react';
+import { Suspense } from 'react';
 import { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./app.css"
-import LoginSignup from "./pages/homepage/LoginSignup";
 
 function App() {
   const [ user, setUser ] = useState(null)
@@ -31,7 +30,7 @@ function App() {
         <Suspense fallback={<p>Loading</p>}>
           <Switch>
             <Route path='/dashboard'>
-              <Dashboard user={user}/>
+              <Navigation user={user}/>
             </Route>
             <Route exact path='/'>
               <Home setUser={setUser} />
