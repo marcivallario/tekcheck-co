@@ -2,12 +2,12 @@ import Banner from "./components/Banner";
 import LoginSignup from "./LoginSignup";
 import './home.css'
 
-function Home({ setUser }) {
+function Home() {
     return (
         <section id="home" className="container-fluid">
             <div className="row">
                 <Banner />
-                <LoginSignup setUser={setUser}/>
+                <LoginSignup />
             </div>
         </section>
     )

@@ -4,8 +4,11 @@ export const fetchUser = createAsyncThunk(
   "user/getUser",
   async () => {
     const data = await fetch("/auth");
-    const user = await data.json();
-    return user;
+    if (!data.ok) {
+      await data.json()
+      return Promise.reject(data.statusText)
+    } 
+    return await data.json();
   }
 );
 
@@ -16,7 +19,13 @@ const userSlice = createSlice({
     isLoading: false,
     hasError: false
   },
-  reducers: {},
+  reducers: {
+    setUser: (state, action) => {
+      state.currentUser = action.payload
+      state.hasError = false
+      state.isLoading = false
+    }
+  },
   extraReducers: {
     [fetchUser.pending]: (state, action) => {
       state.isLoading = true;
@@ -33,5 +42,7 @@ const userSlice = createSlice({
     }
   },
 });
+
+export const { setUser } = userSlice.actions;
 
 export default userSlice.reducer;

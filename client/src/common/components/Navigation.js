@@ -33,6 +33,10 @@ function Navigation({ window, user }) {
     setMobileOpen(!mobileOpen);
   };
 
+  const handleLogout = () => {
+    console.log('logout');
+  }
+
   const drawer = (
     <div>
       <Toolbar />
@@ -76,7 +80,7 @@ function Navigation({ window, user }) {
             </ListItemIcon>
             <ListItemText primary='U.S. Travel Alerts' />
         </ListItem>
-        <ListItem button key='Logout'>
+        <ListItem button key='Logout' onClick={handleLogout}>
             <ListItemIcon>
                 <LogoutIcon />
             </ListItemIcon>
@@ -88,11 +92,11 @@ function Navigation({ window, user }) {
 
   const container = window !== undefined ? () => window().document.body : undefined;
 
-    if (!user) {
-        return (
-            <Redirect to="/" /> 
-        )
-    }
+    // if (!user) {
+    //     return (
+    //         <Redirect to="/" /> 
+    //     )
+    // }
 
   return (
       <BrowserRouter>
