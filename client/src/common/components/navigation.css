@@ -1,0 +1,37 @@
+#nav-logo {
+    width: 15%;
+    max-width: 160px;
+    min-width: 130px;
+}
+
+.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.css-1t29gy6-MuiToolbar-root {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.welcome {
+    text-align: right;
+}
+
+.welcome h6 {
+    font-weight: 600;
+    margin: 0;
+    color: #FF7E3D
+}
+
+.welcome p {
+    font-style: italic;
+    font-size: 13px;
+    color: grey;
+    margin: 0
+}
+
+.css-8je8zh-MuiTouchRipple-root {
+    color: #fff
+}
+
+@media (max-width: 599px) {
+    .welcome {
+        display: none;
+    }
+}
