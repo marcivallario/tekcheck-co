@@ -6,7 +6,6 @@ import { removeUser } from '../../state/slices/userSlice'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
@@ -29,7 +28,6 @@ import Projects from '../../pages/projects/Projects';
 import Trips from '../../pages/trips/Trips';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "./navigation.css";
-import { red } from '@mui/material/colors';
 const drawerWidth = 240;
 
 function Navigation({ window }) {
@@ -64,6 +62,25 @@ function Navigation({ window }) {
       fontFamily: 'Manrope, sans-serif'
     },
     components: {
+      MuiAppBar: {
+        styleOverrides: {
+          root: {
+            boxShadow: "0px 10px 15px -8px rgba(0,0,0,0.1);",
+            backgroundColor: "yellow"
+          }
+        }
+      },
+      MuiListItem: {
+        styleOverrides: {
+          root: {
+            transition: "0.5s",
+            '&:hover': {
+              backgroundColor: "#ff9b6a",
+              transition: "0.5s"
+            }
+          }
+        }
+      },
       MuiSvgIcon: {
         styleOverrides: {
           root: {
@@ -76,13 +93,6 @@ function Navigation({ window }) {
           root: {
             fontWeight: "800",
             color: "#fff",
-          }
-        }
-      },
-      MuiPaper: {
-        styleOverrides: {
-          root: {
-            backgroundColor: "#FF7E3D"
           }
         }
       }

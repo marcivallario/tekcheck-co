@@ -16,7 +16,8 @@
 .welcome h6 {
     font-weight: 600;
     margin: 0;
-    color: #FF7E3D
+    color: #FF7E3D;
+    color: #ff9b6a
 }
 
 .welcome p {
@@ -28,6 +29,10 @@
 
 .css-8je8zh-MuiTouchRipple-root {
     color: #fff
+}
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation0.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.MuiDrawer-paperAnchorDockedLeft.css-12i7wg6-MuiPaper-root-MuiDrawer-paper {
+    background-color: #FF7E3D;
 }
 
 @media (max-width: 599px) {
