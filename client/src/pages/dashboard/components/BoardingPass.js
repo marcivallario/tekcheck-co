@@ -4,19 +4,19 @@ import "./boardingpass.css";
 
 function BoardingPass() {
     return (
-        <div class="boarding-pass">
+        <div className="boarding-pass">
             <header>
-                <div class="passenger">
+                <div className="passenger">
                     <small>Passenger</small>
                     <strong>Doe, John</strong>
                 </div>
-                <div class="flight">
+                <div className="flight">
                     <small>flight</small>
                     <strong>FL 123</strong>
                 </div>
             </header>
-            <section class="cities">
-                <div class="city">
+            <section className="cities">
+                <div className="city">
                     <small>Dep City Name</small>
                     <strong>DCN</strong>
                 </div>
@@ -25,47 +25,47 @@ function BoardingPass() {
                     fontSize: "35px",
                     position: "relative",
                     top: "11px" }}/>
-                <div class="city">
+                <div className="city">
                     <small>Arr City Name</small>
                     <strong>ACN</strong>
                 </div>
             </section>
-            <section class="infos">
-                <div class="details">
-                    <div class="box">
+            <section className="infos">
+                <div className="details">
+                    <div className="box">
                         <small>Conf</small>
                         <strong>C3</strong>
                     </div>
-                    <div class="box">
+                    <div className="box">
                         <small>Seat</small>
                         <strong>14B</strong>
                     </div>
                 </div>
-                <div class="times">
-                    <div class="box">
+                <div className="times">
+                    <div className="box">
                         <small>Departure</small>
                         <strong>11:35</strong>
                     </div>
-                    <div class="box">
+                    <div className="box">
                         <small>Arrival</small>
                         <strong>13:50</strong>
                     </div>
                 </div>
             </section>
-            <section class="strap">
-                <div class="box">
-                    <div class="passenger">
+            <section className="strap">
+                <div className="box">
+                    <div className="passenger">
                         <small>Airline</small>
                         <strong>Delta Airlines</strong>
                     </div>
-                    <div class="date">
+                    <div className="date">
                         <small>Date</small>
                         <strong>Mon, 1 Jan 2015</strong>
                     </div>
                 </div>
                 
                     <FlightTakeoffIcon sx={{ 
-                    color: "black",
+                    color: "#FF7E3D",
                     fontSize: "80px" }}/>
                 
             </section>

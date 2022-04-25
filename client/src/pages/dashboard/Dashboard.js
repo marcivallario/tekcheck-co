@@ -1,26 +1,39 @@
 import Card from '@mui/material/Card';
 import BoardingPass from './components/BoardingPass';
+import AliceCarousel from 'react-alice-carousel';
 import './dashboard.css';
+
+const handleDragStart = (e) => e.preventDefault();
+let items = [
+    <BoardingPass />,
+    <BoardingPass />,
+    <BoardingPass />,
+    <BoardingPass />
+]
 
 function Dashboard() {
     return (
         <div className="dashboard">
             <div className="row">
-                <div className="col">
+                <div className="col-12 col-xl-6">
                     <div id="upcoming-flights">
                         <div className="cardheader">
                             <h3>Upcoming Flights</h3>
-                            <a href="#">See all</a>
                         </div>
                         <div id="boarding-wrapper">
-                            <BoardingPass />
-                            <BoardingPass />
-                            <BoardingPass />
-                            <BoardingPass />
+                            <AliceCarousel 
+                                mouseTracking 
+                                autoWidth 
+                                disableDotsControls
+                                keyboardNavigation
+                                paddingLeft={27}
+                                paddingRight={57}
+                                items={items} 
+                            />
                         </div>
                     </div>
                 </div>
-                <div className="col">
+                <div className="col-12 col-xl-6">
                     <div id="active-projects">
                         <div className="cardheader">
                             <h3>Active Projects</h3>

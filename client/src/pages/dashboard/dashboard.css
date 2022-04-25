@@ -1,8 +1,34 @@
+@import "react-alice-carousel/lib/alice-carousel.css";
+
+
 .cardheader {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+.boarding-wrapper {
+    position: relative;
+    
+}
 
+.alice-carousel {
+    width: 100%;
+    
+    /* mask-image: linear-gradient(transparent,
+          black 20%,
+          black 30%,
+          transparent 100%);
+      -webkit-mask-image: linear-gradient(to right,transparent,
+          black 7%,
+          black 93%,
+          transparent 100%);  */
+}
 
+.alice-carousel__wrapper {
+    padding: 50px;
+}
+
+.alice-carousel__stage-item {
+    margin-right: 10px;
+}

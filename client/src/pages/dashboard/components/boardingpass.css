@@ -6,9 +6,9 @@ Boarding Pass
   width: 350px;
   height: auto;
   background: #fff;
-  border: 1px solid grey;
+  border: 1px solid rgb(241, 241, 241);
   border-radius: 12px;
-  /* box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2); */
+box-shadow: 0px 0px 25px 8px rgba(0,0,0,0.1);
   overflow: hidden;
   text-transform: uppercase;
 
@@ -106,7 +106,7 @@ Boarding Pass
 } */
 
 .boarding-pass .infos .details {
-  background: #ececec;
+  background: #ff7e3d44;
   border-right: 1px solid grey;
 }
 .boarding-pass .infos .details small {
@@ -127,11 +127,7 @@ Boarding Pass
     align-items: center;
     border-top: 1px solid grey;
 }
-.boarding-pass .strap::after {
-  content: "";
-  display: table;
-  clear: both;
-}
+
 .boarding-pass .strap .box {
   padding: 23px 0 20px 20px;
 }
@@ -149,14 +145,15 @@ Boarding Pass
   position: relative;
   top: -5px;
 }
-.boarding-pass .strap .qrcode {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 80px;
-  height: 80px;
+
+.alice-carousel__next-btn-item, .alice-carousel__prev-btn-item {
+    color: grey !important;
 }
 
-.airplane path {
-    position: relative;
+.alice-carousel__next-btn-item:hover, .alice-carousel__prev-btn-item:hover {
+    color: #FF7E3D !important;
+}
+
+.alice-carousel__next-btn-item.__inactive, .alice-carousel__prev-btn-item.__inactive {
+    display: none;
 }
