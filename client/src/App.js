@@ -1,11 +1,13 @@
 import Home from "./pages/homepage/Home";
 import NotFound from "./common/components/NotFound";
 import Navigation from "./common/components/Navigation";
+import ProtectedRoute from "./common/components/ProtectedRoute";
+import PublicRoute from "./common/components/PublicRoute";
 
-import { Suspense, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "./state/slices/userSlice";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import "./app.css"
 
 function App() {
@@ -16,35 +18,19 @@ function App() {
     dispatch(fetchUser());
   }, [dispatch]);
 
-  if (user.hasError) {
+  console.log('USER in App.js: ', user)
+  if (user.isLoading) {
     return (
-      <div className="app">
-        <Suspense fallback={<p>Loading</p>}>
-          <Switch>
-            <Route exact path='/'>
-              <Home />
-            </Route>
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </Switch>
-        </Suspense>
-      </div>
+      <h1>Loading...</h1>
     )
   }
 
   return (
     <div className="app">
       <Switch>
-        <Route exact path='/dashboard'>
-          <Navigation />
-        </Route>
-        <Route exact path='/'>
-          <Redirect to='/dashboard' />
-        </Route>
-        <Route path="*">
-          <NotFound />
-        </Route>
+        <ProtectedRoute exact path="/dashboard" component={Navigation} />
+        <PublicRoute exact path="/" component={Home} />
+        <Route path="*" component={NotFound}/>
       </Switch>
     </div>
   )

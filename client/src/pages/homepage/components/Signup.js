@@ -21,8 +21,6 @@ function Signup() {
         setFormData({...formData, [key]: value})
     }
 
-    
-
     function handleSubmit(e) {
         e.preventDefault();
         fetch('/signup', {
@@ -35,11 +33,13 @@ function Signup() {
         .then(res => {
             if (res.ok) {
                 res.json()
-                .then(user => dispatch(setUser(user)))
-                history.push("/")
-                setFormData({
-                    email: '',
-                    password: ''
+                .then(user => {
+                    dispatch(setUser(user))
+                    history.push("/dashboard")
+                    setFormData({
+                        email: '',
+                        password: ''
+                    })
                 })
             } else {
                 res.json().then(errorResponse => setErrors(errorResponse.errors))

@@ -12,8 +12,6 @@ function Login() {
     })
     const [ errors, setErrors ] = useState(null)
 
-    console.log('Login data: ', loginData)
-
     function handleSubmit(e) {
         e.preventDefault();
         fetch('/login', {
@@ -27,7 +25,6 @@ function Login() {
             if (res.ok) {
                 res.json()
                 .then(user => {
-                    console.log('USER APPROVED: ', user)
                     dispatch(setUser(user))
                     history.push("/dashboard")
                 })

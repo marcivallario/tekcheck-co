@@ -24,6 +24,11 @@ const userSlice = createSlice({
       state.currentUser = action.payload
       state.hasError = false
       state.isLoading = false
+    },
+    removeUser: (state, action) => {
+      state.currentUser = {}
+      state.hasError = false
+      state.isLoading = false
     }
   },
   extraReducers: {
@@ -43,6 +48,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, removeUser } = userSlice.actions;
 
 export default userSlice.reducer;
