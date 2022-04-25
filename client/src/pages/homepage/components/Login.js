@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { useHistory } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../../state/slices/userSlice'
 
-function Login({ setUser }) {
+function Login() {
+    const dispatch = useDispatch();
     let history = useHistory();
     const [ loginData, setLoginData ] = useState({
         email: '',
@@ -20,8 +23,9 @@ function Login({ setUser }) {
         })
         .then(res => {
             if (res.ok) {
-                res.json().then(user => {
-                    setUser(user)
+                res.json()
+                .then(user => {
+                    dispatch(setUser(user))
                     history.push("/dashboard")
                 })
              } else {

@@ -1,5 +1,8 @@
 import { useState } from 'react';
-import { Route, Redirect, Link, BrowserRouter } from 'react-router-dom';
+import { Route, Link, BrowserRouter, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { removeUser } from '../../state/slices/userSlice'
+
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -27,11 +30,23 @@ import Trips from '../../pages/trips/Trips';
 const drawerWidth = 240;
 
 function Navigation({ window, user }) {
+  const dispatch = useDispatch();
+  let history = useHistory();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const handleLogout = () => {
+    fetch('/logout', {
+        method: 'DELETE'
+    })
+    .then(data => {
+      dispatch(removeUser())
+      history.push('/')
+    })
+  }
 
   const drawer = (
     <div>
@@ -76,7 +91,7 @@ function Navigation({ window, user }) {
             </ListItemIcon>
             <ListItemText primary='U.S. Travel Alerts' />
         </ListItem>
-        <ListItem button key='Logout'>
+        <ListItem button key='Logout' onClick={handleLogout}>
             <ListItemIcon>
                 <LogoutIcon />
             </ListItemIcon>
@@ -87,12 +102,6 @@ function Navigation({ window, user }) {
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
-
-    if (!user) {
-        return (
-            <Redirect to="/" /> 
-        )
-    }
 
   return (
       <BrowserRouter>
