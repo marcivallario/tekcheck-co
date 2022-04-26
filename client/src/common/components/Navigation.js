@@ -66,7 +66,6 @@ function Navigation({ window }) {
         styleOverrides: {
           root: {
             boxShadow: "0px 10px 15px -8px rgba(0,0,0,0.1);",
-            backgroundColor: "yellow"
           }
         }
       },

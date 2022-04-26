@@ -1,9 +1,9 @@
 import Card from '@mui/material/Card';
 import BoardingPass from './components/BoardingPass';
 import AliceCarousel from 'react-alice-carousel';
+import ActiveProjects from './components/ActiveProjects';
 import './dashboard.css';
 
-const handleDragStart = (e) => e.preventDefault();
 let items = [
     <BoardingPass />,
     <BoardingPass />,
@@ -37,16 +37,11 @@ function Dashboard() {
                     <div id="active-projects">
                         <div className="cardheader">
                             <h3>Active Projects</h3>
-                            <a href="#">See all</a>
+                            <a className="see-all" href="/projects">See all</a>
                         </div>
-                        <Card>
-                            <div className="project">
-                                <p>test</p>
-                            </div>
-                            <div className="project">
-                                <p>test</p>
-                            </div>
-                        </Card>
+                        <div id="activeprojects-wrapper">
+                            <ActiveProjects />
+                        </div>
                     </div>
                 </div>
             </div>
