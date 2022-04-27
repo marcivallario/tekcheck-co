@@ -14,12 +14,6 @@ let items = [
     <BoardingPass />
 ]
 
-const responsive = {
-    0: { items: 1 },
-    568: { items: 2 },
-    1024: { items: 3 },
-};
-
 function Dashboard() {
     return (
         <div id="dashboard">
@@ -37,7 +31,6 @@ function Dashboard() {
                                 keyboardNavigation
                                 paddingLeft={27}
                                 paddingRight={57}
-                                responsive={responsive}
                                 items={items} 
                             />
                         </div>
