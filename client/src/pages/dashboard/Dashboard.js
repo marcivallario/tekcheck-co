@@ -1,4 +1,3 @@
-import Card from '@mui/material/Card';
 import BoardingPass from './components/BoardingPass';
 import AliceCarousel from 'react-alice-carousel';
 import ActiveProjects from './components/ActiveProjects';
@@ -14,6 +13,12 @@ let items = [
     <BoardingPass />,
     <BoardingPass />
 ]
+
+const responsive = {
+    0: { items: 1 },
+    568: { items: 2 },
+    1024: { items: 3 },
+};
 
 function Dashboard() {
     return (
@@ -32,6 +37,7 @@ function Dashboard() {
                                 keyboardNavigation
                                 paddingLeft={27}
                                 paddingRight={57}
+                                responsive={responsive}
                                 items={items} 
                             />
                         </div>
@@ -61,7 +67,7 @@ function Dashboard() {
                 </div>
             </div>
             <div className="row" id="current-trips">
-                <div className="col-12 col-xl-6">
+                <div className="col-12">
                     <div id="trips-in-progress">
                         <div className="cardheader">
                             <h3>Trips In Progress</h3>
@@ -71,9 +77,6 @@ function Dashboard() {
                             <TripsInProgress />
                         </div>
                     </div>
-                </div>
-                <div className="col">
-                    <Card>Current Destinations</Card>
                 </div>
             </div>
         </div>
