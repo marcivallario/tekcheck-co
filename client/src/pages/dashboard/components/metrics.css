@@ -1,0 +1,34 @@
+#metrics.row {
+    padding: 0 0 20px 0;
+}
+.metric-wrapper {
+    padding: 10px 15px;
+}
+
+.metric-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.metric-head {
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #4b4b4b
+}
+
+.metric-stat {
+    font-weight: 600;
+    font-size: 4em;
+    margin: 0;
+}
+
+.metric-stat p {
+    margin: 0;
+}
+
+@media (max-width: 991px) {
+    #metrics > div {
+        padding-bottom: 20px;
+    }
+}

@@ -1,5 +1,5 @@
-import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
-import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
+import ArrowRightAltRoundedIcon from '@mui/icons-material/ArrowRightAltRounded';
+import FlightTakeoffRoundedIcon from '@mui/icons-material/FlightTakeoffRounded';
 import "./boardingpass.css";
 
 function BoardingPass() {
@@ -20,7 +20,7 @@ function BoardingPass() {
                     <small>Dep City Name</small>
                     <strong>DCN</strong>
                 </div>
-                <ArrowRightAltIcon sx={{ 
+                <ArrowRightAltRoundedIcon sx={{ 
                     color: "black",
                     fontSize: "35px",
                     position: "relative",
@@ -64,9 +64,10 @@ function BoardingPass() {
                     </div>
                 </div>
                 
-                    <FlightTakeoffIcon sx={{ 
+                    <FlightTakeoffRoundedIcon sx={{ 
                     color: "#FF7E3D",
-                    fontSize: "80px" }}/>
+                    fontSize: "70px",
+                    marginRight: "23px" }}/>
                 
             </section>
         </div>

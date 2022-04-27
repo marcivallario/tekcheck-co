@@ -186,7 +186,7 @@ function Navigation({ window }) {
           <Box
             component="nav"
             sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-            aria-label="mailbox folders"
+            aria-label="navigation"
           >
             <Drawer
               container={container}
@@ -219,7 +219,6 @@ function Navigation({ window }) {
             sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
           >
             <Toolbar />
-            
                 <Route
                     path='/passengers'
                     component={Passengers}
@@ -236,7 +235,7 @@ function Navigation({ window }) {
                     exact path='/dashboard'
                     component={Dashboard}
                   />
-          
+            <footer><p>TrekCheck © 2022. All Rights Reserved.</p></footer>
           </Box>
         </Box>
       </BrowserRouter>

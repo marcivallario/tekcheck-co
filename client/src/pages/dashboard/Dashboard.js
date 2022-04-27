@@ -2,6 +2,9 @@ import Card from '@mui/material/Card';
 import BoardingPass from './components/BoardingPass';
 import AliceCarousel from 'react-alice-carousel';
 import ActiveProjects from './components/ActiveProjects';
+import CompletedTrips from './components/CompletedTrips';
+import TotalProjects from './components/TotalProjects';
+import TotalPassengers from './components/TotalPassengers';
 import './dashboard.css';
 
 let items = [
@@ -46,14 +49,14 @@ function Dashboard() {
                 </div>
             </div>
             <div className="row" id="metrics"> 
-                <div className="col">
-                    <Card>Metric 1</Card>
+                <div className="col-12 col-lg-4">
+                    <CompletedTrips />
                 </div>
-                <div className="col">
-                    <Card>Metric 2</Card>
+                <div className="col-12 col-lg-4">
+                    <TotalProjects />
                 </div>
-                <div className="col">
-                    <Card>Metric 3</Card>
+                <div className="col-12 col-lg-4">
+                    <TotalPassengers />
                 </div>
             </div>
             <div className="row">

@@ -4,10 +4,8 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import Card from '@mui/material/Card';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import CheckBoxRoundedIcon from '@mui/icons-material/CheckBoxRounded';
 import './activeprojects.css';
 
 function ActiveProjects() {
@@ -25,7 +23,7 @@ function ActiveProjects() {
         >
             <Table 
                 sx={{ 
-                    minWidth: 650, 
+                    width: "100%",
                     overflow: "scroll",
                     borderSpacing: "0 5px",
                     borderCollapse: "separate"
@@ -46,7 +44,7 @@ function ActiveProjects() {
                         margin: "5px",
                     }}>
                         <TableCell component="th" scope="row" align="center" sx={{border: "none"}}>
-                            <CheckBoxIcon sx={{ color: "#72DCE8"}}/>
+                            <CheckBoxRoundedIcon sx={{ color: "#72DCE8"}}/>
                         </TableCell>
                         <TableCell sx={{border: "none", fontWeight: "500"}}>#300-53</TableCell>
                         <TableCell sx={{border: "none", fontWeight: "500"}}>Amazon</TableCell>
@@ -56,7 +54,7 @@ function ActiveProjects() {
                         backgroundColor: "#f9f9f9"
                     }}>
                         <TableCell component="th" scope="row" align="center" sx={{border: "none"}}>
-                            <CheckBoxIcon sx={{ color: "#72DCE8"}}/>
+                            <CheckBoxRoundedIcon sx={{ color: "#72DCE8"}}/>
                         </TableCell>
                         <TableCell sx={{border: "none", fontWeight: "500"}}>#225-24</TableCell>
                         <TableCell sx={{border: "none", fontWeight: "500"}}>Netflix</TableCell>

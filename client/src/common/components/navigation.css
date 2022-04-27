@@ -35,8 +35,25 @@
     background-color: #FF7E3D;
 }
 
+footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: calc(100% - 240px);
+    background-color: #fff;
+    padding: 15px;
+}
+
+footer p {
+    text-align: center;
+    font-size: 11px;
+    color: rgb(80, 80, 80);
+    margin-bottom: 0;
+}
+
 @media (max-width: 599px) {
     .welcome {
         display: none;
     }
 }
+
