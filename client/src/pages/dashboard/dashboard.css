@@ -1,5 +1,8 @@
 @import "react-alice-carousel/lib/alice-carousel.css";
 
+#dashboard {
+    padding-bottom: 45px;
+}
 
 .cardheader {
     display: flex;
@@ -49,7 +52,18 @@
 }
 
 #activeprojects-wrapper {
-    margin-top: 27px;
     height: 373px;
     color: #f5f5f5
+}
+
+#current-trips {
+    padding-top: 20px;
+}
+
+.dash-widget {
+    margin-top: 27px;
+}
+
+#currenttrips-wrapper {
+    height: 373px;
 }
