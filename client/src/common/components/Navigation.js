@@ -1,12 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Route, Link, BrowserRouter, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { removeUser } from '../../state/slices/userSlice'
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
@@ -27,12 +26,22 @@ import Dashboard from '../../pages/dashboard/Dashboard';
 import Passengers from '../../pages/passengers/Passengers';
 import Projects from '../../pages/projects/Projects';
 import Trips from '../../pages/trips/Trips';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import "./navigation.css";
 const drawerWidth = 240;
 
-function Navigation({ window, user }) {
+function Navigation({ window }) {
   const dispatch = useDispatch();
   let history = useHistory();
+  const user = useSelector(state => state.user.currentUser)
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [ time, setTime ] = useState(new Date().toLocaleTimeString(undefined, { year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric" }))
+
+  useEffect(() => {
+    const refreshTime = setInterval(() => {
+      setTime(new Date().toLocaleTimeString(undefined, { year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric" }))
+    }, 1000)
+  }, []);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -47,6 +56,47 @@ function Navigation({ window, user }) {
       history.push('/')
     })
   }
+
+  const theme = createTheme({
+    typography: {
+      fontFamily: 'Manrope, sans-serif'
+    },
+    components: {
+      MuiAppBar: {
+        styleOverrides: {
+          root: {
+            boxShadow: "0px 10px 15px -8px rgba(0,0,0,0.1);",
+          }
+        }
+      },
+      MuiListItem: {
+        styleOverrides: {
+          root: {
+            transition: "0.5s",
+            '&:hover': {
+              backgroundColor: "#ff9b6a",
+              transition: "0.5s"
+            }
+          }
+        }
+      },
+      MuiSvgIcon: {
+        styleOverrides: {
+          root: {
+            color: '#fff'
+          }
+        }
+      },
+      MuiTypography: {
+        styleOverrides: {
+          root: {
+            fontWeight: "800",
+            color: "#fff",
+          }
+        }
+      }
+    }
+  })
 
   const drawer = (
     <div>
@@ -76,9 +126,6 @@ function Navigation({ window, user }) {
             </ListItemIcon>
             <ListItemText primary='Trips' />
         </ListItem>
-      </List>
-      <Divider />
-      <List>
         <ListItem button key='Flight Aware' component="a" href="https://flightaware.com/" target='_blank'>
             <ListItemIcon>
                 <FlightIcon />
@@ -104,83 +151,95 @@ function Navigation({ window, user }) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
+    <ThemeProvider theme={theme}>
       <BrowserRouter>
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+        <Box sx={{ display: 'flex' }}>
+          <CssBaseline />
+          <AppBar
+            position="fixed"
+            sx={{ 
+              zIndex: (theme) => theme.zIndex.drawer + 1,
+              backgroundColor: "white",
+            }}
           >
-            <MenuIcon />
-          </IconButton>
-          {/* <img src={require('../../assets/images/logo.png')} title="TrekCheck" alt="TrekCheck" /> */}
-        </Toolbar>
-      </AppBar>
-      <Box
-        component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-        aria-label="mailbox folders"
-      >
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true
-          }}
-          sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-          }}
-        >
-          {drawer}
-        </Drawer>
-        <Drawer
-          variant="permanent"
-          sx={{
-            display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-          }}
-          open
-        >
-          {drawer}
-        </Drawer>
-      </Box>
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
-      >
-        <Toolbar />
-        
-            <Route
-                path='/passengers'
-                component={Passengers}
-              />
-            <Route
-                path='/projects'
-                component={Projects}
-              />
-            <Route
-                path='/trips'
-                component={Trips}
-              />
-            <Route
-                exact path='/dashboard'
-                component={Dashboard}
-              />
-       
-      </Box>
-    </Box>
-    </BrowserRouter>
+            <Toolbar>
+              <div className="img-container" id="nav-logo">
+                <img src={require('../../assets/images/logo_orange.png')} title="TrekCheck" alt="TrekCheck" />
+              </div>
+              <div className="welcome">
+                <h6>Welcome, {user.first_name} {user.last_name}!</h6>
+                <p>{time}</p>
+              </div>
+              
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="start"
+                onClick={handleDrawerToggle}
+                sx={{ mr: 2, display: { sm: 'none' } }}
+              >
+                <MenuIcon sx={{color: "#FF7E3D"}}/>
+              </IconButton>
+              
+            </Toolbar>
+          </AppBar>
+          <Box
+            component="nav"
+            sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+            aria-label="navigation"
+          >
+            <Drawer
+              container={container}
+              variant="temporary"
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+              ModalProps={{
+                keepMounted: true
+              }}
+              sx={{
+                display: { xs: 'block', sm: 'none' },
+                '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+              }}
+            >
+              {drawer}
+            </Drawer>
+            <Drawer
+              variant="permanent"
+              sx={{
+                display: { xs: 'none', sm: 'block' },
+                '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+              }}
+              open
+            >
+              {drawer}
+            </Drawer>
+          </Box>
+          <Box
+            component="main"
+            sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+          >
+            <Toolbar />
+                <Route
+                    path='/passengers'
+                    component={Passengers}
+                  />
+                <Route
+                    path='/projects'
+                    component={Projects}
+                  />
+                <Route
+                    path='/trips'
+                    component={Trips}
+                  />
+                <Route
+                    exact path='/dashboard'
+                    component={Dashboard}
+                  />
+            <footer><p>TrekCheck © 2022. All Rights Reserved.</p></footer>
+          </Box>
+        </Box>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

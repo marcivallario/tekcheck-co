@@ -1,0 +1,59 @@
+#nav-logo {
+    width: 15%;
+    max-width: 160px;
+    min-width: 130px;
+}
+
+.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.css-1t29gy6-MuiToolbar-root {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.welcome {
+    text-align: right;
+}
+
+.welcome h6 {
+    font-weight: 600;
+    margin: 0;
+    color: #FF7E3D;
+    color: #ff9b6a
+}
+
+.welcome p {
+    font-style: italic;
+    font-size: 13px;
+    color: grey;
+    margin: 0
+}
+
+.css-8je8zh-MuiTouchRipple-root {
+    color: #fff
+}
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation0.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.MuiDrawer-paperAnchorDockedLeft.css-12i7wg6-MuiPaper-root-MuiDrawer-paper, .MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation16.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
+    background-color: #FF7E3D;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: calc(100% - 240px);
+    background-color: #fff;
+    padding: 15px;
+}
+
+footer p {
+    text-align: center;
+    font-size: 11px;
+    color: rgb(80, 80, 80);
+    margin-bottom: 0;
+}
+
+@media (max-width: 599px) {
+    .welcome {
+        display: none;
+    }
+}
+
