@@ -68,6 +68,30 @@ function Navigation({ window, component: Component }) {
           }
         }
       },
+      
+      MuiToolbar: {
+        styleOverrides: {
+          root: {
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }
+        }
+      }
+    }
+  })
+
+  const menuTheme = createTheme({
+    typography: {
+      fontFamily: 'Manrope, sans-serif'
+    },
+    components: {
+       MuiPaper: {
+        styleOverrides: {
+          root: {
+            backgroundColor: "#FF7E3D"
+          }
+        }
+      },
       MuiListItem: {
         styleOverrides: {
           root: {
@@ -93,7 +117,7 @@ function Navigation({ window, component: Component }) {
             color: "#fff",
           }
         }
-      }
+      },
     }
   })
 
@@ -189,37 +213,39 @@ function Navigation({ window, component: Component }) {
               
             </Toolbar>
           </AppBar>
-          <Box
-            component="nav"
-            sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-            aria-label="navigation"
-          >
-            <Drawer
-              container={container}
-              variant="temporary"
-              open={mobileOpen}
-              onClose={handleDrawerToggle}
-              ModalProps={{
-                keepMounted: true
-              }}
-              sx={{
-                display: { xs: 'block', sm: 'none' },
-                '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-              }}
+          <ThemeProvider theme={menuTheme}>
+            <Box
+              component="nav"
+              sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+              aria-label="navigation"
             >
-              {drawer}
-            </Drawer>
-            <Drawer
-              variant="permanent"
-              sx={{
-                display: { xs: 'none', sm: 'block' },
-                '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-              }}
-              open
-            >
-              {drawer}
-            </Drawer>
-          </Box>
+              <Drawer
+                container={container}
+                variant="temporary"
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+                ModalProps={{
+                  keepMounted: true
+                }}
+                sx={{
+                  display: { xs: 'block', sm: 'none' },
+                  '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                }}
+              >
+                {drawer}
+              </Drawer>
+              <Drawer
+                variant="permanent"
+                sx={{
+                  display: { xs: 'none', sm: 'block' },
+                  '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                }}
+                open
+              >
+                {drawer}
+              </Drawer>
+            </Box>
+          </ThemeProvider>
           <Box
             component="main"
             sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}

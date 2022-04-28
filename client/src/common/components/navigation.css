@@ -4,11 +4,6 @@
     min-width: 130px;
 }
 
-.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.css-1t29gy6-MuiToolbar-root {
-    justify-content: space-between;
-    align-items: center;
-}
-
 .welcome {
     text-align: right;
 }
@@ -28,11 +23,7 @@
 }
 
 .css-8je8zh-MuiTouchRipple-root {
-    color: #fff
-}
-
-.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation0.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.MuiDrawer-paperAnchorDockedLeft.css-12i7wg6-MuiPaper-root-MuiDrawer-paper, .MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation16.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
-    background-color: #FF7E3D;
+    color: #fff !important;
 }
 
 footer {
