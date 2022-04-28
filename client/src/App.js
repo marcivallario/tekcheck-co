@@ -1,8 +1,11 @@
 import Home from "./pages/homepage/Home";
 import NotFound from "./common/components/NotFound";
-import Navigation from "./common/components/Navigation";
 import ProtectedRoute from "./common/components/ProtectedRoute";
 import PublicRoute from "./common/components/PublicRoute";
+import Dashboard from "./pages/dashboard/Dashboard";
+import Passengers from "./pages/passengers/Passengers";
+import Trips from "./pages/trips/Trips";
+import Projects from "./pages/projects/Projects";
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
@@ -18,7 +21,6 @@ function App() {
     dispatch(fetchUser());
   }, [dispatch]);
 
-  console.log('USER in App.js: ', user)
   if (user.isLoading) {
     return (
       <h1>Loading...</h1>
@@ -28,7 +30,10 @@ function App() {
   return (
     <div className="app">
       <Switch>
-        <ProtectedRoute exact path="/dashboard" component={Navigation} />
+        <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+        <ProtectedRoute exact path="/projects" component={Projects} />
+        <ProtectedRoute exact path="/trips" component={Trips} />
+        <ProtectedRoute exact path="/passengers" component={Passengers} />
         <PublicRoute exact path="/" component={Home} />
         <Route path="*" component={NotFound}/>
       </Switch>

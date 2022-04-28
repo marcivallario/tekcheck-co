@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Route, Link, BrowserRouter, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeUser } from '../../state/slices/userSlice'
 
@@ -22,15 +22,12 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 
-import Dashboard from '../../pages/dashboard/Dashboard';
-import Passengers from '../../pages/passengers/Passengers';
-import Projects from '../../pages/projects/Projects';
-import Trips from '../../pages/trips/Trips';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "./navigation.css";
+
 const drawerWidth = 240;
 
-function Navigation({ window }) {
+function Navigation({ window, component: Component }) {
   const dispatch = useDispatch();
   let history = useHistory();
   const user = useSelector(state => state.user.currentUser)
@@ -102,29 +99,37 @@ function Navigation({ window }) {
     <div>
       <Toolbar />
       <List>
-        <ListItem button key='Dashboard' to="/dashboard" component={Link}>
+        <ListItem button key='Dashboard'>
+          <a className="menu-route" href="/dashboard">
             <ListItemIcon>
                 <HomeIcon />
             </ListItemIcon>
             <ListItemText primary='Dashboard' />
+           </a>
         </ListItem>
-        <ListItem button key='Passengers' to="/passengers" component={Link}>
+        <ListItem button key='Passengers'>
+          <a className="menu-route" href="/passengers">
             <ListItemIcon>
                 <PersonIcon />
             </ListItemIcon>
             <ListItemText primary='Passengers' />
+          </a>
         </ListItem>
-        <ListItem button key='Projects' to="/projects" component={Link}>
+        <ListItem button key='Projects'>
+          <a className="menu-route" href="/projects">
             <ListItemIcon>
                 <FolderIcon />
             </ListItemIcon>
             <ListItemText primary='Projects' />
+          </a>
         </ListItem>
-        <ListItem button key='Trips' to="/trips" component={Link}>
+        <ListItem button key='Trips'>
+          <a className="menu-route" href="/trips">
             <ListItemIcon>
                 <AirplaneTicketIcon />
             </ListItemIcon>
             <ListItemText primary='Trips' />
+          </a>
         </ListItem>
         <ListItem button key='Flight Aware' component="a" href="https://flightaware.com/" target='_blank'>
             <ListItemIcon>
@@ -152,7 +157,6 @@ function Navigation({ window }) {
 
   return (
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
         <Box sx={{ display: 'flex' }}>
           <CssBaseline />
           <AppBar
@@ -219,26 +223,10 @@ function Navigation({ window }) {
             sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
           >
             <Toolbar />
-                <Route
-                    path='/passengers'
-                    component={Passengers}
-                  />
-                <Route
-                    path='/projects'
-                    component={Projects}
-                  />
-                <Route
-                    path='/trips'
-                    component={Trips}
-                  />
-                <Route
-                    exact path='/dashboard'
-                    component={Dashboard}
-                  />
+            <Component />
             <footer><p>TrekCheck © 2022. All Rights Reserved.</p></footer>
           </Box>
         </Box>
-      </BrowserRouter>
     </ThemeProvider>
   );
 }
