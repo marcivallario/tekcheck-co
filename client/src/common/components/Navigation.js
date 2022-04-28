@@ -38,6 +38,8 @@ function Navigation({ window, component: Component }) {
     const refreshTime = setInterval(() => {
       setTime(new Date().toLocaleTimeString(undefined, { year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric" }))
     }, 1000)
+
+    return refreshTime;
   }, []);
 
   const handleDrawerToggle = () => {
