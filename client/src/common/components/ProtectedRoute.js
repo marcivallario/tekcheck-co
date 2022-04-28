@@ -1,11 +1,10 @@
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import Home from '../../pages/homepage/Home';
 import Navigation from './Navigation';
 
 const ProtectedRoute = ({component, ...rest}) => {
     const { currentUser } = useSelector((state) => state.user)
-    console.log('User in ProtectedRoute: ', currentUser.id)
     return (
         <Route 
             {...rest} 

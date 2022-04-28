@@ -1,6 +1,5 @@
 import Home from "./pages/homepage/Home";
 import NotFound from "./common/components/NotFound";
-import Navigation from "./common/components/Navigation";
 import ProtectedRoute from "./common/components/ProtectedRoute";
 import PublicRoute from "./common/components/PublicRoute";
 import Dashboard from "./pages/dashboard/Dashboard";
@@ -22,7 +21,6 @@ function App() {
     dispatch(fetchUser());
   }, [dispatch]);
 
-  console.log('USER in App.js: ', user.currentUser.id)
   if (user.isLoading) {
     return (
       <h1>Loading...</h1>
@@ -32,7 +30,6 @@ function App() {
   return (
     <div className="app">
       <Switch>
-        
         <ProtectedRoute exact path="/dashboard" component={Dashboard} />
         <ProtectedRoute exact path="/projects" component={Projects} />
         <ProtectedRoute exact path="/trips" component={Trips} />
