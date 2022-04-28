@@ -51,6 +51,12 @@ footer p {
     margin-bottom: 0;
 }
 
+.menu-route {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+}
+
 @media (max-width: 599px) {
     .welcome {
         display: none;
