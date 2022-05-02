@@ -1,0 +1,23 @@
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1em;
+}
+
+.table-header input {
+    max-height: 30px;
+}
+
+.table-header h1 {
+    margin: 0
+}
+
+@media (max-width: 400px) {
+    .table-header {
+        flex-direction: column;
+        align-items: center;
+        gap: 2em;
+    }
+}
+
