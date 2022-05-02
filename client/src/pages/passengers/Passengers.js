@@ -78,12 +78,12 @@ function Passengers() {
                             border: "none", 
                             fontWeight: "500",
                             display: { xs: 'none', sm: 'table-cell' }
-                            }}>407-404-2878</TableCell>
+                            }}><a href="tel:555-666-7777">555-666-7777</a></TableCell>
                         <TableCell sx={{
                             border: "none", 
                             fontWeight: "500",
                             display: { xs: 'none', sm: 'table-cell' }
-                            }}>john.doe@gmail.com</TableCell>
+                            }}><a href="john.doe@gmail.com">john.doe@gmail.com</a></TableCell>
                         <TableCell sx={{border: "none", fontWeight: "500"}}>View</TableCell>
                     </TableRow>
                 </TableBody>
