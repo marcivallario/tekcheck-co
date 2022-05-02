@@ -10,9 +10,103 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_01_190445) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_02_214300) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accommodations", force: :cascade do |t|
+    t.datetime "checkin"
+    t.datetime "checkout"
+    t.string "acc_type"
+    t.string "name"
+    t.string "address_1"
+    t.string "address_2"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
+    t.string "confirmation"
+    t.string "phone"
+    t.text "notes"
+    t.integer "trip_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ffnumbers", force: :cascade do |t|
+    t.string "airline"
+    t.string "number"
+    t.integer "passenger_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "flights", force: :cascade do |t|
+    t.string "leg"
+    t.string "airline"
+    t.string "flight_no"
+    t.string "dep_airport"
+    t.datetime "dep_time"
+    t.string "arr_airport"
+    t.datetime "arr_time"
+    t.string "seat"
+    t.string "confirmation"
+    t.text "notes"
+    t.integer "trip_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "passengers", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "legal_first_name"
+    t.string "legal_last_name"
+    t.string "nickname"
+    t.string "position"
+    t.string "department"
+    t.string "cell"
+    t.string "email"
+    t.string "dob"
+    t.string "country_of_residence"
+    t.string "state_of_residence"
+    t.string "passport"
+    t.string "license"
+    t.string "tsa_precheck"
+    t.string "global_entry"
+    t.string "seat_assignment_pref"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "job_no"
+    t.string "job_name"
+    t.string "prod_co"
+    t.boolean "active"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "transportations", force: :cascade do |t|
+    t.string "direction"
+    t.datetime "date"
+    t.string "trans_mode"
+    t.string "confirmation"
+    t.text "notes"
+    t.integer "trip_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "trips", force: :cascade do |t|
+    t.datetime "depart"
+    t.datetime "return"
+    t.boolean "itinerary_sent"
+    t.integer "project_id"
+    t.integer "passenger_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
