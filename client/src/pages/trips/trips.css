@@ -1,0 +1,26 @@
+.add-record {
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    background-color: #72DCE8;
+    border: none;
+    position: absolute;
+    z-index: 2;
+    bottom: 1em;
+    right: 1em;
+    font-size: 2em;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0px 10px 25px 4px rgba(0,0,0,0.1);
+    transition: 500ms;
+}
+
+.add-record:hover {
+    transform: scale(110%);
+    transition: 500ms;
+}
+
+.add-record:active {
+    background-color: #c0c0c0;
+    transition: 500ms;
+}

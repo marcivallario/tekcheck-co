@@ -31,7 +31,9 @@ module TrekcheckCo
     # Adding back cookies and session middleware
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
-    # config.time_zone = "Central Time (US & Canada)"
+    #
+    config.time_zone = "UTC"
+    config.active_record.default_timezone = :utc
     # config.eager_load_paths << Rails.root.join("extras")
     #
     # Only loads a smaller set of middleware suitable for API only apps.
