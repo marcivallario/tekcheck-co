@@ -14,12 +14,12 @@ function Passengers() {
     const dispatch = useDispatch(); 
     const passengers = useSelector(state => state.passengers)
     const [ search, setSearch ] = useState('');
-    const filteredPassengers = passengers.passengersList.filter(passenger => {
+    let filteredPassengers = passengers.passengersList.filter(passenger => {
         const firstName = passenger.legal_first_name.toLowerCase()
         const lastName = passenger.legal_last_name.toLowerCase()
         const searchTerm = search.toLowerCase()
         return firstName.includes(searchTerm) || lastName.includes(searchTerm || search === '')
-    });
+    }).sort((a,b) => (a.legal_last_name > b.legal_last_name) ? 1 : -1)
 
     function updateSeach(e) {
         setSearch(e.target.value);
