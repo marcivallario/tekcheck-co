@@ -14,8 +14,6 @@ function ActiveProjects() {
     const projects = useSelector(state => state.projects)
     const activeProjects = projects.projectsList.filter(project => project.active === true)
 
-    console.log(activeProjects)
-
     return(
         <TableContainer 
             component={Card}

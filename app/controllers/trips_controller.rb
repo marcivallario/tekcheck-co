@@ -35,6 +35,6 @@ class TripsController < ApplicationController
     private
 
     def trips_params
-        params.permit(:depart, :return, :itinerary_sent, :passenger_id, :user_id);
+        params.permit(:depart, :return, :itinerary_sent, :passenger_id, :project_id);
     end
 end

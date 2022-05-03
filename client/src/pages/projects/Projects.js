@@ -20,7 +20,6 @@ function Projects() {
         const searchTerm = search.toLowerCase()
         return jobName.includes(searchTerm) || prodCo.includes(searchTerm || search === '')
     });
-    console.log(projects)
 
     function updateSeach(e) {
         setSearch(e.target.value);
@@ -105,6 +104,7 @@ function Projects() {
                     </TableBody>
                 </Table>
             </TableContainer>
+            <button className="add-record">+</button>
         </div>
     )
 }

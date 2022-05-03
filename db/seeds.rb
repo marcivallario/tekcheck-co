@@ -26,4 +26,8 @@ pass2 = Passenger.create!(user_id: user1.id, legal_first_name: "Jane", legal_las
 
 pass3 = Passenger.create!(user_id: user1.id, legal_first_name: "Cory", legal_last_name: "Alpha", position: "Production Assistant", department: "Production", cell: "407-583-5839", email: "calpha@gmail.com", dob: "01/02/1993", country_of_residence: "USA", state_of_residence: "CA", passport: "4736549543", license: "VA3445-23445-33", tsa_precheck: "TT484736458", global_entry: "583939903", seat_assignment_pref: "Aisle")
 
+# Trips
+
+trip1 = Trip.create!(depart: DateTime.new(2022, 3, 2), return: DateTime.new(2022, 3, 14), itinerary_sent: false, project_id: proj1.id, passenger_id: pass1.id,)
+
 puts "Seeding complete!"
