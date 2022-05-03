@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeUser } from '../../state/slices/userSlice';
 import { fetchPassengers } from "../../state/slices/passengersSlice";
+import { fetchProjects } from "../../state/slices/projectsSlice"
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -46,6 +47,7 @@ function Navigation({ window, component: Component }) {
 
   useEffect(() => {
     dispatch(fetchPassengers());
+    dispatch(fetchProjects());
   }, [dispatch]);
 
   const handleDrawerToggle = () => {

@@ -10,7 +10,7 @@ user1 = User.create!(email: 'marcivallario@gmail.com', first_name: 'Marci', last
 
 proj1 = Project.create!(job_no: '300-31', job_name: 'Messiah', prod_co: 'Old Story Productions', active: true, user_id: user1.id)
 
-proj2 = Project.create!(job_no: '300-28', job_name: 'The Story of God', prod_co: 'Evolve Studios', active: true, user_id: user1.id)
+proj2 = Project.create!(job_no: '300-28', job_name: 'The Story of God', prod_co: 'Evolve Studios', active: false, user_id: user1.id)
 
 proj3 = Project.create!(job_no: '300-43', job_name: 'Euphoria', prod_co: 'A24', active: true, user_id: user1.id)
 

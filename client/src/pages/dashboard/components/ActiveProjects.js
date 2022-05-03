@@ -6,9 +6,17 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
 import CheckBoxRoundedIcon from '@mui/icons-material/CheckBoxRounded';
+
+import { useSelector, useDispatch } from 'react-redux';
 import './activeprojects.css';
 
 function ActiveProjects() {
+    const dispatch = useDispatch();
+    const projects = useSelector(state => state.projects)
+    const activeProjects = projects.projectsList.filter(project => project.active === true)
+
+    console.log(activeProjects)
+
     return(
         <TableContainer 
             component={Card}
@@ -39,27 +47,21 @@ function ActiveProjects() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    <TableRow sx={{
-                        backgroundColor: "#f9f9f9",
-                        margin: "5px",
-                    }}>
-                        <TableCell scope="row" align="center" sx={{border: "none"}}>
-                            <CheckBoxRoundedIcon sx={{ color: "#72DCE8"}}/>
-                        </TableCell>
-                        <TableCell sx={{border: "none", fontWeight: "500"}}>#300-53</TableCell>
-                        <TableCell sx={{border: "none", fontWeight: "500"}}>Amazon</TableCell>
-                        <TableCell sx={{border: "none", fontWeight: "500"}}>"Tom Clancy's Jack Ryan"</TableCell>
-                    </TableRow>
-                    <TableRow sx={{
-                        backgroundColor: "#f9f9f9"
-                    }}>
-                        <TableCell scope="row" align="center" sx={{border: "none"}}>
-                            <CheckBoxRoundedIcon sx={{ color: "#72DCE8"}}/>
-                        </TableCell>
-                        <TableCell sx={{border: "none", fontWeight: "500"}}>#225-24</TableCell>
-                        <TableCell sx={{border: "none", fontWeight: "500"}}>Netflix</TableCell>
-                        <TableCell sx={{border: "none", fontWeight: "500"}}>"Messiah"</TableCell>
-                    </TableRow>
+                    {activeProjects.map(project => {
+                        return (
+                            <TableRow key={project.id} sx={{
+                                backgroundColor: "#f9f9f9",
+                                margin: "5px",
+                            }}>
+                                <TableCell scope="row" align="center" sx={{border: "none"}}>
+                                    <CheckBoxRoundedIcon sx={{ color: "#72DCE8"}}/>
+                                </TableCell>
+                                <TableCell sx={{border: "none", fontWeight: "500"}}>#{project.job_no}</TableCell>
+                                <TableCell sx={{border: "none", fontWeight: "500"}}>{project.prod_co}</TableCell>
+                                <TableCell sx={{border: "none", fontWeight: "500"}}>{project.job_name}</TableCell>
+                            </TableRow>
+                        )
+                    })}
                 </TableBody>
             </Table>
         </TableContainer>
