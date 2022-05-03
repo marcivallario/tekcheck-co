@@ -18,6 +18,7 @@ proj4 = Project.create!(job_no: '300-47', job_name: 'Handmaid\'s Tale', prod_co:
 
 proj5 = Project.create!(job_no: '300-53', job_name: 'Tom Clancy\'s Jack Ryan', prod_co: 'Paramount Television Studios', active: true, user_id: user1.id)
 
+# Passengers
 
 pass1 = Passenger.create!(user_id: user1.id, legal_first_name: "John", legal_last_name: "Brown", nickname: "JJ", position: "BB Electric", department: "G&E", cell: "407-475-3333", email: "jbrown68@gmail.com", dob: "01/24/1980", country_of_residence: "USA", state_of_residence: "CA", passport: "4736549543", license: "VA3445-23445-33", tsa_precheck: "TT484736458", global_entry: "583939903", seat_assignment_pref: "Window")
 

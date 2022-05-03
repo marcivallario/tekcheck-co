@@ -7,11 +7,10 @@ import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
 import CheckBoxRoundedIcon from '@mui/icons-material/CheckBoxRounded';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import './activeprojects.css';
 
 function ActiveProjects() {
-    const dispatch = useDispatch();
     const projects = useSelector(state => state.projects)
     const activeProjects = projects.projectsList.filter(project => project.active === true)
 

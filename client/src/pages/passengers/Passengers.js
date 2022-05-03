@@ -11,7 +11,7 @@ import { useState } from 'react';
 import './passengers.css'
 
 function Passengers() {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch(); 
     const passengers = useSelector(state => state.passengers)
     const [ search, setSearch ] = useState('');
     const filteredPassengers = passengers.passengersList.filter(passenger => {
