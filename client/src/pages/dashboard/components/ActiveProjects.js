@@ -43,7 +43,7 @@ function ActiveProjects() {
                         backgroundColor: "#f9f9f9",
                         margin: "5px",
                     }}>
-                        <TableCell component="th" scope="row" align="center" sx={{border: "none"}}>
+                        <TableCell scope="row" align="center" sx={{border: "none"}}>
                             <CheckBoxRoundedIcon sx={{ color: "#72DCE8"}}/>
                         </TableCell>
                         <TableCell sx={{border: "none", fontWeight: "500"}}>#300-53</TableCell>
@@ -53,7 +53,7 @@ function ActiveProjects() {
                     <TableRow sx={{
                         backgroundColor: "#f9f9f9"
                     }}>
-                        <TableCell component="th" scope="row" align="center" sx={{border: "none"}}>
+                        <TableCell scope="row" align="center" sx={{border: "none"}}>
                             <CheckBoxRoundedIcon sx={{ color: "#72DCE8"}}/>
                         </TableCell>
                         <TableCell sx={{border: "none", fontWeight: "500"}}>#225-24</TableCell>

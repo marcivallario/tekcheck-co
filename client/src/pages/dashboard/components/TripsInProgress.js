@@ -43,7 +43,7 @@ function TripsInProgress() {
                         backgroundColor: "#f9f9f9",
                         margin: "5px",
                     }}>
-                        <TableCell component="th" sx={{border: "none", fontWeight: "500"}}>John Doe</TableCell>
+                        <TableCell sx={{border: "none", fontWeight: "500"}}>John Doe</TableCell>
                         <TableCell sx={{border: "none", fontWeight: "500"}}>#300-53</TableCell>
                         <TableCell sx={{border: "none", fontWeight: "500"}}>Fri, 23 Apr 2022 - Sat, 24 Apr 2022</TableCell>
                         <TableCell sx={{border: "none"}}>

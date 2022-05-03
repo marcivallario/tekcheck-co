@@ -5,14 +5,39 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { useState } from 'react';
 import './passengers.css'
 
 function Passengers() {
+    const dispatch = useDispatch();
+    const passengers = useSelector(state => state.passengers)
+    const [ search, setSearch ] = useState('');
+    const filteredPassengers = passengers.passengersList.filter(passenger => {
+        const firstName = passenger.legal_first_name.toLowerCase()
+        const lastName = passenger.legal_last_name.toLowerCase()
+        const searchTerm = search.toLowerCase()
+        return firstName.includes(searchTerm) || lastName.includes(searchTerm || search === '')
+    });
+
+    function updateSeach(e) {
+        setSearch(e.target.value);
+    }
+
+    if (passengers.passengersList.length === 0) {
+        return <p>Add a Passenger</p>
+    } 
+
+    if (passengers.isLoading === true) {
+        return <h1>Loading...</h1>
+    }
+
     return (
         <div id="passengers">
             <div className="table-header">
                  <h1>Passengers</h1>
-                <input></input>
+                <input value={search} onChange={updateSeach} placeholder="Filter by name"/>
             </div>
             <TableContainer 
             component={Card}
@@ -59,33 +84,41 @@ function Passengers() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    <TableRow sx={{
-                        backgroundColor: "#f9f9f9",
-                        margin: "5px",
-                    }}>
-                        <TableCell component="th" sx={{border: "none", fontWeight: "500"}}>John Doe</TableCell>
-                        <TableCell sx={{
-                            border: "none", 
-                            fontWeight: "500",
-                            display: { xs: 'none', sm: 'table-cell' }
-                            }}>BB Electric</TableCell>
-                        <TableCell sx={
-                            {border: "none", 
-                            fontWeight: "500",
-                            display: { xs: 'none', sm: 'table-cell' }
-                            }}>G&#38;E</TableCell>
-                        <TableCell sx={{
-                            border: "none", 
-                            fontWeight: "500",
-                            display: { xs: 'none', sm: 'table-cell' }
-                            }}><a href="tel:555-666-7777">555-666-7777</a></TableCell>
-                        <TableCell sx={{
-                            border: "none", 
-                            fontWeight: "500",
-                            display: { xs: 'none', sm: 'table-cell' }
-                            }}><a href="john.doe@gmail.com">john.doe@gmail.com</a></TableCell>
-                        <TableCell sx={{border: "none", fontWeight: "500"}}>View</TableCell>
-                    </TableRow>
+                    {filteredPassengers.map(pass => {
+                        return (
+                            <TableRow key={pass.id} sx={{
+                                backgroundColor: "#f9f9f9",
+                                margin: "5px"
+                            }}>
+                                <TableCell sx={{border: "none", fontWeight: "500", whiteSpace: "nowrap"}}>{pass.legal_last_name}, {pass.legal_first_name}</TableCell>
+                                <TableCell sx={{
+                                    border: "none", 
+                                    fontWeight: "500",
+                                    display: { xs: 'none', sm: 'table-cell' },
+                                    whiteSpace: "nowrap"
+                                    }}>{pass.position}</TableCell>
+                                <TableCell sx={
+                                    {border: "none", 
+                                    fontWeight: "500",
+                                    display: { xs: 'none', sm: 'table-cell' },
+                                    whiteSpace: "nowrap"
+                                    }}>{pass.department}</TableCell>
+                                <TableCell sx={{
+                                    border: "none", 
+                                    fontWeight: "500",
+                                    display: { xs: 'none', sm: 'table-cell' },
+                                    whiteSpace: "nowrap"
+                                    }}><a href={`tel:${pass.cell}`}>{pass.cell}</a></TableCell>
+                                <TableCell sx={{
+                                    border: "none", 
+                                    fontWeight: "500",
+                                    display: { xs: 'none', sm: 'table-cell' },
+                                    whiteSpace: "nowrap"
+                                    }}><a href={`mailto:${pass.email}`}>{pass.email}</a></TableCell>
+                                <TableCell sx={{border: "none", fontWeight: "500"}}>View</TableCell>
+                            </TableRow>
+                        )
+                    })}
                 </TableBody>
             </Table>
         </TableContainer>

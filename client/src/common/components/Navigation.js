@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeUser } from '../../state/slices/userSlice'
+import { removeUser } from '../../state/slices/userSlice';
+import { fetchPassengers } from "../../state/slices/passengersSlice";
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -31,6 +32,7 @@ function Navigation({ window, component: Component }) {
   const dispatch = useDispatch();
   let history = useHistory();
   const user = useSelector(state => state.user.currentUser)
+  const passengers = useSelector(state => state.passengers.passengersList)
   const [mobileOpen, setMobileOpen] = useState(false);
   const [ time, setTime ] = useState(new Date().toLocaleTimeString(undefined, { year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric" }))
 
@@ -41,6 +43,10 @@ function Navigation({ window, component: Component }) {
 
     return refreshTime;
   }, []);
+
+  useEffect(() => {
+    dispatch(fetchPassengers());
+  }, [dispatch]);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
