@@ -72,7 +72,8 @@
     background-color: #ffc6a9;
 }
 
-/* Add Passenger */
+/*********** Add Passenger ***********/
+
 #add-passenger {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -86,7 +87,7 @@
     color: #4b4b4b;
 }
 
-#add-passenger input[type=text], #add-passenger select, #add-passenger textarea {
+#add-passenger input[type=text], #add-passenger input[type=date], #add-passenger select, #add-passenger textarea {
     width: 100%;
 }
 
@@ -96,28 +97,28 @@
     margin-left: 2px
 }
 
-.name {
+#add-passenger .name {
     grid-column: span 2;
 }
 
-.role, .contact, .details, .numbers {
+#add-passenger .role, #add-passenger .contact, #add-passenger .details, #add-passenger .numbers {
     grid-column: span 3;
 }
 
-.seats {
+#add-passenger .seats {
     grid-column: span 6;
 }
 
-.notes {
+#add-passenger .notes {
     grid-column: span 6;
 }
 
-.seat-options {
+#add-passenger .seat-options {
     display: flex;
     justify-content: space-around;
 }
 
-.seat-options .seat-wrapper {
+#add-passenger .seat-options .seat-wrapper {
     display: flex;
     gap: .5em;
     align-items: center;
@@ -138,3 +139,56 @@
     }
 }
 
+/*********** View Passenger ***********/
+
+.view-edit-passenger h6 {
+    margin: 0;
+}
+
+#passenger-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+#passenger-details .role, #passenger-details .contact {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    column-gap: 1.75em;
+}
+
+.detail-label {
+    text-align: left;
+    font-weight: 600;
+    margin: 0;
+    white-space: nowrap
+}
+
+.detail-value {
+    white-space: nowrap
+}
+
+.travel-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.75em;
+}
+
+#passenger-details, #traveller-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3em;
+}
+
+@media (max-width: 800px) {
+    #passenger-details, #traveller-details {
+        grid-template-columns: 1fr;
+    }
+
+    #passenger-details .role, #passenger-details .contact {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .modal-body.view-edit-body {
+        font-size: .75em;
+    }
+}

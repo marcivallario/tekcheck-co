@@ -13,6 +13,11 @@
     margin: 0
 }
 
+.passenger-actions {
+    display: flex;
+    flex-flow: nowrap;
+}
+
 @media (max-width: 400px) {
     .table-header {
         flex-direction: column;

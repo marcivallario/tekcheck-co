@@ -1,7 +1,7 @@
 import { useState } from 'react'; 
 import { useSelector, useDispatch } from 'react-redux';
 import { addPassenger } from '../../../state/slices/passengersSlice';
-import "./addpassenger.css"
+import "../../../common/styles/modal.css"
 
 function AddPassenger({ show, onClose }) {
     const dispatch = useDispatch(); 
@@ -189,7 +189,7 @@ function AddPassenger({ show, onClose }) {
 
                         <div className="details">
                             <label htmlFor="dob" className="required">Date of Birth</label>
-                            <input name="dob" type="text" value={formData.dob} onChange={handleChange}/>
+                            <input name="dob" type="date" min="1900-01-01" max={new Date().toISOString().slice(0, 10)} value={formData.dob} onChange={handleChange}/>
                         </div>
 
                         <div className="details">
