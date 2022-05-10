@@ -123,6 +123,11 @@
     align-items: center;
 }
 
+#passenger-add-error {
+    grid-column: span 6;
+    width: 100%;
+}
+
 @media (max-width: 599px) {
     .name, .role, .contact, .details, .numbers {
         grid-column: span 6;

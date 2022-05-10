@@ -24,8 +24,7 @@ function AddPassenger({ show, onClose }) {
         seat_assignment_pref: [],
         notes: ""
     })
-
-    console.log(formData)
+    const [ errors, setErrors ] = useState(null)
     
     let states = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY' ];
     const options = states.map((state, index) => {
@@ -36,6 +35,28 @@ function AddPassenger({ show, onClose }) {
         const key = e.target.name;
         const value = e.target.value;
         setFormData({...formData, [key]: value})
+    }
+
+    function handlePhoneChange(e) {
+        setFormData({...formData, cell: formatPhoneNumber(e.target.value)})
+    }
+
+
+    function formatPhoneNumber(value) {
+        if (!value) return value;
+        const phoneNumber = value.replace(/[^\d]/g, '');
+        const phoneNumberLength = phoneNumber.length;
+
+        if (phoneNumberLength < 4) return phoneNumber;
+        if (phoneNumberLength < 7) {
+            return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+        }
+
+        return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
+            3,
+            6
+        )}-${phoneNumber.slice(6, 10)}`;
+
     }
 
     function handleSeatChange(e) {
@@ -75,32 +96,48 @@ function AddPassenger({ show, onClose }) {
             },
             body: JSON.stringify({...formData, seat_assignment_pref: seatPref})
             })
-            .then(resp => resp.json())
-            .then(newPassenger => {
-                dispatch(addPassenger(newPassenger))
+        .then(resp => {
+            if (!resp.ok) {
+                resp.json().then(resp => setErrors(resp.errors))
+            } else {
+                resp.json().then(newPassenger => {
+                    dispatch(addPassenger(newPassenger))
+                    onClose()
+                    setFormData({
+                        user_id: userId,
+                        legal_first_name: "",
+                        legal_last_name: "",
+                        nickname: "",
+                        position: "",
+                        department: "",
+                        cell: "",
+                        email: "",
+                        dob: "",
+                        state_of_residence: "",
+                        passport: "",
+                        license: "",
+                        tsa_precheck: "",
+                        global_entry: "",
+                        seat_assignment_pref: [],
+                        notes: ""
+                    })
+                })
             }
-        )
-
-        onClose()
-
-        setFormData({
-            user_id: userId,
-            legal_first_name: "",
-            legal_last_name: "",
-            nickname: "",
-            position: "",
-            department: "",
-            cell: "",
-            email: "",
-            dob: "",
-            state_of_residence: "",
-            passport: "",
-            license: "",
-            tsa_precheck: "",
-            global_entry: "",
-            seat_assignment_pref: [],
-            notes: ""
         })
+    }
+
+    function displayErrors() {
+        if (errors) {
+            return (
+                <div id="passenger-add-error" className="error-container">
+                    {errors.map((err, index) => {
+                        return <p key={index} className="error">{err}</p>
+                    })}
+                </div>
+            )
+        } else {
+            return null
+        }
     }
 
     if (!show) {
@@ -142,7 +179,7 @@ function AddPassenger({ show, onClose }) {
 
                         <div className="contact">
                             <label htmlFor="cell" className="required">Cell</label>
-                            <input name="cell" type="text" value={formData.cell} onChange={handleChange}/>
+                            <input name="cell" type="text" value={formData.cell} onChange={handlePhoneChange}/>
                         </div>
 
                         <div className="contact">
@@ -207,6 +244,7 @@ function AddPassenger({ show, onClose }) {
                             <label htmlFor="notes">Notes</label>
                             <textarea name="notes" value={formData.notes} onChange={handleChange}></textarea>
                         </div>
+                        {displayErrors()}
                     </form>
                 </div>
                 <div className="modal-footer">

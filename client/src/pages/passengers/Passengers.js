@@ -110,7 +110,7 @@ function Passengers() {
                                         fontWeight: "500",
                                         display: { xs: 'none', sm: 'table-cell' },
                                         whiteSpace: "nowrap"
-                                        }}><a href={`tel:${pass.cell}`}>{pass.cell}</a></TableCell>
+                                        }}><a href={`tel:${pass.cell.replace(/[(),-\s]/g, '')}`}>{pass.cell}</a></TableCell>
                                     <TableCell sx={{
                                         border: "none", 
                                         fontWeight: "500",
