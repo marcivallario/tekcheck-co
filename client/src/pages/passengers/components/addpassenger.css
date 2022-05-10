@@ -1,0 +1,135 @@
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #00000080;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1300;
+}
+
+.modal-header, .modal-footer {
+    border-top: none;
+    border-bottom: none;
+}
+
+.modal-content {
+    width: 75%;
+    max-width: 1000px;
+    background-color: #fff;
+    border: none;
+    box-shadow: 0px 10px 25px 4px rgba(0,0,0,0.25);
+}
+
+.modal-title {
+    margin: 0;
+}
+
+.modal-body {
+    padding: 2em;
+}
+
+.modal-footer {
+    gap: 1em;
+
+}
+
+.modal-button {
+    background-color: #fff;
+    border: none;
+    color: #FF7E3D;
+    text-transform: uppercase;
+    border-radius: 10px;
+    padding: 5px 15px;
+    font-weight: 800;
+    letter-spacing: .05em;
+    cursor: pointer;
+    transition: 500ms;
+}
+
+.modal-button:hover {
+    background-color: #ffe3d5;
+    transition: 500ms;
+}
+
+.modal-button:active {
+    background-color: #c0c0c0;
+    color: #fff;
+    transition: 500ms;
+} 
+
+.modal-save {
+    color: #fff;
+    background-color: #FF7E3D;
+}
+
+.modal-save:hover {
+    background-color: #ffc6a9;
+}
+
+/* Add Passenger */
+#add-passenger {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 1.25em;
+}
+
+#add-passenger label:not(.seat-option) {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #4b4b4b;
+}
+
+#add-passenger input[type=text], #add-passenger select, #add-passenger textarea {
+    width: 100%;
+}
+
+.required::after {
+    content: "*";
+    color: red;
+    margin-left: 2px
+}
+
+.name {
+    grid-column: span 2;
+}
+
+.role, .contact, .details, .numbers {
+    grid-column: span 3;
+}
+
+.seats {
+    grid-column: span 6;
+}
+
+.notes {
+    grid-column: span 6;
+}
+
+.seat-options {
+    display: flex;
+    justify-content: space-around;
+}
+
+.seat-options .seat-wrapper {
+    display: flex;
+    gap: .5em;
+    align-items: center;
+}
+
+@media (max-width: 599px) {
+    .name, .role, .contact, .details, .numbers {
+        grid-column: span 6;
+    }
+
+    .modal-content {
+        width: 90%;
+        position: relative;
+        top: 150px;
+    }
+}
+

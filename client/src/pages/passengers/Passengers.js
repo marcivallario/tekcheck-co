@@ -8,12 +8,14 @@ import Card from '@mui/material/Card';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
+import AddPassenger from './components/AddPassenger';
 import './passengers.css'
 
 function Passengers() {
     const dispatch = useDispatch(); 
     const passengers = useSelector(state => state.passengers)
     const [ search, setSearch ] = useState('');
+    const [ show, setShow ] = useState(false)
     let filteredPassengers = passengers.passengersList.filter(passenger => {
         const firstName = passenger.legal_first_name.toLowerCase()
         const lastName = passenger.legal_last_name.toLowerCase()
@@ -122,7 +124,8 @@ function Passengers() {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <button className="add-record">+</button>
+            <button className="add-record" onClick={() => setShow(true)}>+</button>
+            <AddPassenger onClose={() => setShow(false)} show={show} />
         </div>
     )
 }
