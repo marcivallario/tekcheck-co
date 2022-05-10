@@ -21,7 +21,7 @@ function Passengers() {
         const lastName = passenger.legal_last_name.toLowerCase()
         const searchTerm = search.toLowerCase()
         return firstName.includes(searchTerm) || lastName.includes(searchTerm || search === '')
-    }).sort((a,b) => (a.legal_last_name > b.legal_last_name) ? 1 : -1)
+    }).sort((a,b) => (a.legal_last_name.toLowerCase() > b.legal_last_name.toLowerCase()) ? 1 : -1)
 
     function updateSeach(e) {
         setSearch(e.target.value);

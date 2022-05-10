@@ -1,8 +1,10 @@
 import { useState } from 'react'; 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { addPassenger } from '../../../state/slices/passengersSlice';
 import "./addpassenger.css"
 
 function AddPassenger({ show, onClose }) {
+    const dispatch = useDispatch(); 
     const userId = useSelector(state => state.user.currentUser.id)
     const [ formData, setFormData ] = useState({
         user_id: userId,
@@ -65,7 +67,40 @@ function AddPassenger({ show, onClose }) {
     }
     
     function savePassenger() {
+        const seatPref = formData.seat_assignment_pref.join()
+        fetch('/passengers', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({...formData, seat_assignment_pref: seatPref})
+            })
+            .then(resp => resp.json())
+            .then(newPassenger => {
+                dispatch(addPassenger(newPassenger))
+            }
+        )
+
         onClose()
+
+        setFormData({
+            user_id: userId,
+            legal_first_name: "",
+            legal_last_name: "",
+            nickname: "",
+            position: "",
+            department: "",
+            cell: "",
+            email: "",
+            dob: "",
+            state_of_residence: "",
+            passport: "",
+            license: "",
+            tsa_precheck: "",
+            global_entry: "",
+            seat_assignment_pref: [],
+            notes: ""
+        })
     }
 
     if (!show) {
