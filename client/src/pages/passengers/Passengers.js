@@ -8,18 +8,20 @@ import Card from '@mui/material/Card';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
+import AddPassenger from './components/AddPassenger';
 import './passengers.css'
 
 function Passengers() {
     const dispatch = useDispatch(); 
     const passengers = useSelector(state => state.passengers)
     const [ search, setSearch ] = useState('');
+    const [ show, setShow ] = useState(false)
     let filteredPassengers = passengers.passengersList.filter(passenger => {
         const firstName = passenger.legal_first_name.toLowerCase()
         const lastName = passenger.legal_last_name.toLowerCase()
         const searchTerm = search.toLowerCase()
         return firstName.includes(searchTerm) || lastName.includes(searchTerm || search === '')
-    }).sort((a,b) => (a.legal_last_name > b.legal_last_name) ? 1 : -1)
+    }).sort((a,b) => (a.legal_last_name.toLowerCase() > b.legal_last_name.toLowerCase()) ? 1 : -1)
 
     function updateSeach(e) {
         setSearch(e.target.value);
@@ -108,7 +110,7 @@ function Passengers() {
                                         fontWeight: "500",
                                         display: { xs: 'none', sm: 'table-cell' },
                                         whiteSpace: "nowrap"
-                                        }}><a href={`tel:${pass.cell}`}>{pass.cell}</a></TableCell>
+                                        }}><a href={`tel:${pass.cell.replace(/[(),-\s]/g, '')}`}>{pass.cell}</a></TableCell>
                                     <TableCell sx={{
                                         border: "none", 
                                         fontWeight: "500",
@@ -122,7 +124,8 @@ function Passengers() {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <button className="add-record">+</button>
+            <button className="add-record" onClick={() => setShow(true)}>+</button>
+            <AddPassenger onClose={() => setShow(false)} show={show} />
         </div>
     )
 }
