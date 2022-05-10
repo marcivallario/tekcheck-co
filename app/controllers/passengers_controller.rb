@@ -35,6 +35,6 @@ class PassengersController < ApplicationController
     private
     
     def passenger_params
-        params.permit(:user_id, :legal_first_name, :legal_last_name, :nickname, :position, :department, :cell, :email, :dob, :country_of_residence, :state_of_residence, :passport, :license, :tsa_precheck, :global_entry, :seat_assignment_pref)
+        params.permit(:user_id, :legal_first_name, :legal_last_name, :nickname, :position, :department, :cell, :email, :dob, :state_of_residence, :passport, :license, :tsa_precheck, :global_entry, :seat_assignment_pref, :notes)
     end
 end

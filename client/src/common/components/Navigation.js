@@ -52,8 +52,6 @@ function Navigation({ window, component: Component }) {
     dispatch(fetchTrips());
   }, [dispatch]);
 
-  console.log(trips)
-
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
