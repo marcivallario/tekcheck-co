@@ -27,7 +27,7 @@ const passengersSlice = createSlice({
       state.passengersList = state.passengersList.filter(pass => pass.id != action.payload.id)
     },
     updatePassenger: (state, action) => {
-      const passenger = state.passengersList.find(pass => pass.id === action.payload.id);
+      let passenger = state.passengersList.find(pass => pass.id === action.payload.id);
       passenger = action.payload
     }
   },

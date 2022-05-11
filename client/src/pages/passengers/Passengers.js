@@ -119,7 +119,7 @@ function Passengers() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {passengers.passengersList.length === 0? <td className="empty-table" colspan="6"><p>Click the + to add a passenger.</p></td> : filteredPassengers.map(pass => {
+                        {passengers.passengersList.length === 0? <tr><td className="empty-table" colSpan="6"><p>Click the + to add a passenger.</p></td></tr> : filteredPassengers.map(pass => {
                             return (
                                 <TableRow key={pass.id} sx={{
                                     backgroundColor: "#f9f9f9",
