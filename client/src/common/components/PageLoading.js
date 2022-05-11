@@ -1,9 +1,9 @@
 import ReactLoading from 'react-loading';
 
-function PageLoading() {
+function PageLoading({ height, width}) {
     return (
-        <div className="page-loading">
-            <ReactLoading type="spin" color="#72DCE8" height="30vh" width="30vw"/>
+        <div className="loading-spinner">
+            <ReactLoading type="spin" color="#72DCE8" height={height} width={width}/>
         </div>
     )
 }

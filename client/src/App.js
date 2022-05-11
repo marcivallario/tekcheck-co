@@ -24,7 +24,9 @@ function App() {
 
   if (user.isLoading) {
     return (
-      <PageLoading />
+      <div className="page-loading">
+        <PageLoading height="25vh" width="25vh"/>
+      </div>
     )
   }
 
