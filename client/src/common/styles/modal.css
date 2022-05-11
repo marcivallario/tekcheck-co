@@ -163,14 +163,14 @@
     white-space: nowrap
 }
 
-.detail-value {
+.detail-label {
     white-space: nowrap
 }
 
 .travel-detail {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 1.75em;
+    column-gap: 1em;
 }
 
 #passenger-details, #traveller-details {
