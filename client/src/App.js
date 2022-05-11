@@ -6,6 +6,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Passengers from "./pages/passengers/Passengers";
 import Trips from "./pages/trips/Trips";
 import Projects from "./pages/projects/Projects";
+import PageLoading from "./common/components/PageLoading";
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
@@ -23,7 +24,7 @@ function App() {
 
   if (user.isLoading) {
     return (
-      <h1>Loading...</h1>
+      <PageLoading />
     )
   }
 

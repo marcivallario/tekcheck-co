@@ -53,9 +53,9 @@ function ActiveProjects() {
                                 <TableCell scope="row" align="center" sx={{border: "none"}}>
                                     <CheckBoxRoundedIcon sx={{ color: "#72DCE8"}}/>
                                 </TableCell>
-                                <TableCell sx={{border: "none", fontWeight: "500"}}>#{project.job_no}</TableCell>
+                                <TableCell sx={{border: "none", fontWeight: "500", whiteSpace: "nowrap"}}>#{project.job_no}</TableCell>
                                 <TableCell sx={{border: "none", fontWeight: "500"}}>{project.prod_co}</TableCell>
-                                <TableCell sx={{border: "none", fontWeight: "500"}}>{project.job_name}</TableCell>
+                                <TableCell sx={{border: "none", fontWeight: "500"}}>"{project.job_name}"</TableCell>
                             </TableRow>
                         )
                     })}

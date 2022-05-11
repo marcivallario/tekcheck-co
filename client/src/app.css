@@ -36,3 +36,12 @@ h1, h2, h3, h4, h5, h6, p, button {
 a:hover {
   color: inherit
 }
+
+.page-loading {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff46;
+}
