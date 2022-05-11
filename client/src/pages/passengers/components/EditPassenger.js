@@ -123,8 +123,6 @@ function EditPassenger({ passenger, onClose, setToggleEdit }) {
         })
     }
 
-    console.log('Form Data: ', formData)
-
     return (
         <div className="modal">
             <div className="modal-content">

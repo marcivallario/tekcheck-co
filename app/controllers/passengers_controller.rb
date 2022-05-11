@@ -1,4 +1,6 @@
 class PassengersController < ApplicationController
+    wrap_parameters format: []
+
     def index 
         current_user = User.find_by(id: session[:user_id])
         if (current_user) 
@@ -21,7 +23,7 @@ class PassengersController < ApplicationController
 
     def update
         passenger = Passenger.find_by(id: params[:id])
-        passenger.update(passenger_params)
+        passenger.update!(passenger_params)
         render json: passenger, status: :ok
     end
 
@@ -35,6 +37,6 @@ class PassengersController < ApplicationController
     private
     
     def passenger_params
-        params.permit(:user_id, :legal_first_name, :legal_last_name, :nickname, :position, :department, :cell, :email, :dob, :state_of_residence, :passport, :license, :tsa_precheck, :global_entry, :seat_assignment_pref, :notes)
+        params.permit(:user_id, :id, :legal_first_name, :legal_last_name, :nickname, :position, :department, :cell, :email, :dob, :state_of_residence, :passport, :license, :tsa_precheck, :global_entry, :seat_assignment_pref, :notes)
     end
 end
