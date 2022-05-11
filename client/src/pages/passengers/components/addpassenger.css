@@ -1,0 +1,64 @@
+#add-passenger {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 1.25em;
+}
+
+#add-passenger label:not(.seat-option) {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #4b4b4b;
+}
+
+#add-passenger input[type=text], #add-passenger input[type=date], #add-passenger select, #add-passenger textarea {
+    width: 100%;
+}
+
+.required::after {
+    content: "*";
+    color: red;
+    margin-left: 2px
+}
+
+#add-passenger .name {
+    grid-column: span 2;
+}
+
+#add-passenger .role, #add-passenger .contact, #add-passenger .details, #add-passenger .numbers {
+    grid-column: span 3;
+}
+
+#add-passenger .seats {
+    grid-column: span 6;
+}
+
+#add-passenger .notes {
+    grid-column: span 6;
+}
+
+#add-passenger .seat-options {
+    display: flex;
+    justify-content: space-around;
+}
+
+#add-passenger .seat-options .seat-wrapper {
+    display: flex;
+    gap: .5em;
+    align-items: center;
+}
+
+#passenger-add-error {
+    grid-column: span 6;
+    width: 100%;
+}
+
+@media (max-width: 599px) {
+    .name, .role, .contact, .details, .numbers {
+        grid-column: span 6;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+}

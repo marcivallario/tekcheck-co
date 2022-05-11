@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updatePassenger } from '../../../state/slices/passengersSlice';
+import './editpassenger.css'
 
 function EditPassenger({ passenger, onClose, setToggleEdit }) {
     const dispatch = useDispatch();
@@ -60,7 +61,7 @@ function EditPassenger({ passenger, onClose, setToggleEdit }) {
     function displayErrors() {
         if (errors) {
             return (
-                <div id="passenger-add-error" className="error-container">
+                <div id="passenger-edit-error" className="error-container">
                     {errors.map((err, index) => {
                         return <p key={index} className="error">{err}</p>
                     })}

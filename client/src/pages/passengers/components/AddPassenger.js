@@ -1,7 +1,7 @@
 import { useState } from 'react'; 
 import { useSelector, useDispatch } from 'react-redux';
 import { addPassenger } from '../../../state/slices/passengersSlice';
-import "../../../common/styles/modal.css"
+import "./addpassenger.css"
 
 function AddPassenger({ show, onClose }) {
     const dispatch = useDispatch(); 

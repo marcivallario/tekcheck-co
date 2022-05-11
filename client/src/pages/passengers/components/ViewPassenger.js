@@ -1,4 +1,5 @@
 import Divider from '@mui/material/Divider';
+import "./viewpassenger.css"
 
 function ViewPassenger({ passenger, onClose, setToggleEdit }) {
 

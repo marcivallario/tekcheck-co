@@ -3,8 +3,6 @@ import ViewPassenger from './ViewPassenger';
 import EditPassenger from './EditPassenger';
 
 
-//styles in modal.css
-
 function ViewEditPassenger({ onClose, show, passenger }) {
 
     
