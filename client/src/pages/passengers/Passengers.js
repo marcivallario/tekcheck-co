@@ -5,10 +5,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
+import IconButton from '@mui/material/IconButton';
 import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
 import { useSelector, useDispatch } from 'react-redux';
+import { removePassenger } from "../../state/slices/passengersSlice"
 import { useState } from 'react';
 import AddPassenger from './components/AddPassenger';
 import ViewEditPassenger from './components/ViewEditPassenger';
@@ -46,8 +48,15 @@ function Passengers() {
         return firstName.includes(searchTerm) || lastName.includes(searchTerm || search === '')
     }).sort((a,b) => (a.legal_last_name.toLowerCase() > b.legal_last_name.toLowerCase()) ? 1 : -1)
 
-    function updateSeach(e) {
+    function updateSearch(e) {
         setSearch(e.target.value);
+    }
+
+    function handleDelete(pass) {
+        fetch(`/passengers/${pass.id}`, {
+            method: 'DELETE'
+            })
+        .then(dispatch(removePassenger(pass)));
     }
 
     if (passengers.passengersList.length === 0) {
@@ -62,7 +71,7 @@ function Passengers() {
         <div id="passengers">
             <div className="table-header">
                  <h1>Passengers</h1>
-                <input value={search} onChange={updateSeach} placeholder="Filter by name"/>
+                <input value={search} onChange={updateSearch} placeholder="Filter by name"/>
             </div>
             <TableContainer 
                 component={Card}
@@ -141,12 +150,13 @@ function Passengers() {
                                         whiteSpace: "nowrap"
                                         }}><a href={`mailto:${pass.email}`}>{pass.email}</a></TableCell>
                                     <TableCell sx={{border: "none", fontWeight: "500"}}>
-                                        <div class="passenger-actions">
-                                            <VisibilityRoundedIcon sx={{ color: "#FF7E3D", cursor: "pointer"}} onClick={() => {
+                                        <div className="passenger-actions">
+                                            <IconButton onClick={() => {
                                             setShowViewEdit(true)
                                             setSelectedPassenger(pass)
-                                            }}/>
-                                            <DeleteRoundedIcon sx={{ color: "#FF7E3D", cursor: "pointer"}}/>
+                                            }}><VisibilityRoundedIcon sx={{ color: "#FF7E3D", cursor: "pointer"}} /></IconButton>
+
+                                            <IconButton onClick={() => handleDelete(pass)}><DeleteRoundedIcon sx={{ color: "#FF7E3D", cursor: "pointer"}}/></IconButton>
                                         </div>
                                     </TableCell>
                                 </TableRow>
