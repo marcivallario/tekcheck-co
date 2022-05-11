@@ -1,0 +1,56 @@
+.view-edit-passenger h6 {
+    margin: 0;
+}
+
+#passenger-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+#passenger-details .role,
+#passenger-details .contact {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    column-gap: 1.75em;
+}
+
+.detail-label {
+    text-align: left;
+    font-weight: 600;
+    margin: 0;
+    white-space: nowrap
+}
+
+.detail-label {
+    white-space: nowrap
+}
+
+.travel-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1em;
+}
+
+#passenger-details,
+#traveller-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3em;
+}
+
+@media (max-width: 800px) {
+
+    #passenger-details,
+    #traveller-details {
+        grid-template-columns: 1fr;
+    }
+
+    #passenger-details .role,
+    #passenger-details .contact {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .modal-body.view {
+        font-size: .75em;
+    }
+}

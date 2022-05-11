@@ -1,46 +1,76 @@
-import { useState } from 'react'; 
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addPassenger } from '../../../state/slices/passengersSlice';
-import "./addpassenger.css"
+import { updatePassenger } from '../../../state/slices/passengersSlice';
+import './editpassenger.css'
 
-function AddPassenger({ show, onClose }) {
-    const dispatch = useDispatch(); 
+function EditPassenger({ passenger, onClose, setToggleEdit }) {
+    const dispatch = useDispatch();
     const userId = useSelector(state => state.user.currentUser.id)
     const [ formData, setFormData ] = useState({
+        id: '',
         user_id: userId,
-        legal_first_name: "",
-        legal_last_name: "",
-        nickname: "",
-        position: "",
-        department: "",
-        cell: "",
-        email: "",
-        dob: "",
-        state_of_residence: "",
-        passport: "",
-        license: "",
-        tsa_precheck: "",
-        global_entry: "",
+        legal_first_name: '',
+        legal_last_name: '',
+        nickname: '',
+        position: '',
+        department: '',
+        cell: '',
+        email: '',
+        dob: '',
+        state_of_residence: '',
+        passport: '',
+        license: '',
+        tsa_precheck: '',
+        global_entry: '',
         seat_assignment_pref: [],
-        notes: ""
+        notes: ''
     })
     const [ errors, setErrors ] = useState(null)
-    
+
+    useEffect(() => {
+        setFormData({
+            id: passenger.id,
+            user_id: userId,
+            legal_first_name: passenger.legal_first_name,
+            legal_last_name: passenger.legal_last_name,
+            nickname: (passenger.nickname ? passenger.nickname : ''),
+            position: passenger.position,
+            department: passenger.department,
+            cell: passenger.cell,
+            email: passenger.email,
+            dob: passenger.dob,
+            state_of_residence: (passenger.state_of_residence ? passenger.state_of_residence : ''),
+            passport: (passenger.passport ? passenger.passport : ''),
+            license: (passenger.license ? passenger.license : ''),
+            tsa_precheck: (passenger.tsa_precheck ? passenger.tsa_precheck : ''),
+            global_entry: (passenger.global_entry ? passenger.global_entry : ''),
+            seat_assignment_pref: (passenger.seat_assignment_pref ? passenger.seat_assignment_pref.split(',') : passenger.seat_assignment_pref),
+            notes: (passenger.notes ? passenger.notes : '')
+        })
+    }, [passenger])
+
     let states = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY' ];
     const options = states.map((state, index) => {
         return <option key={index} value={state}>{state}</option>
     })
 
-    function handleChange(e) {
-        const key = e.target.name;
-        const value = e.target.value;
-        setFormData({...formData, [key]: value})
-    }
-
     function handlePhoneChange(e) {
         setFormData({...formData, cell: formatPhoneNumber(e.target.value)})
     }
 
+    function displayErrors() {
+        if (errors) {
+            return (
+                <div id="passenger-edit-error" className="error-container">
+                    {errors.map((err, index) => {
+                        return <p key={index} className="error">{err}</p>
+                    })}
+                </div>
+            )
+        } else {
+            return null
+        }
+    }
 
     function formatPhoneNumber(value) {
         if (!value) return value;
@@ -65,93 +95,43 @@ function AddPassenger({ show, onClose }) {
         setFormData({...formData, seat_assignment_pref: seatOptions})
     }
 
-    function discardModal() {
-        setFormData({
-            user_id: userId,
-            legal_first_name: "",
-            legal_last_name: "",
-            nickname: "",
-            position: "",
-            department: "",
-            cell: "",
-            email: "",
-            dob: "",
-            state_of_residence: "",
-            passport: "",
-            license: "",
-            tsa_precheck: "",
-            global_entry: "",
-            seat_assignment_pref: [],
-            notes: ""
-        })
-        onClose()
+    function handleChange(e) {
+        const key = e.target.name;
+        const value = e.target.value;
+        setFormData({...formData, [key]: value})
     }
-    
-    function savePassenger() {
+
+    function handleUpdate() {
         const seatPref = formData.seat_assignment_pref.join()
-        fetch('/passengers', {
-            method: 'POST',
+        fetch(`/passengers/${formData.id}`, {
+            method: 'PATCH',
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({...formData, seat_assignment_pref: seatPref})
-            })
+        })
         .then(resp => {
             if (!resp.ok) {
                 resp.json().then(resp => setErrors(resp.errors))
             } else {
-                resp.json().then(newPassenger => {
-                    dispatch(addPassenger(newPassenger))
+                resp.json().then(updatedPassenger => {
+                    dispatch(updatePassenger(updatedPassenger))
                     onClose()
-                    setFormData({
-                        user_id: userId,
-                        legal_first_name: "",
-                        legal_last_name: "",
-                        nickname: "",
-                        position: "",
-                        department: "",
-                        cell: "",
-                        email: "",
-                        dob: "",
-                        state_of_residence: "",
-                        passport: "",
-                        license: "",
-                        tsa_precheck: "",
-                        global_entry: "",
-                        seat_assignment_pref: [],
-                        notes: ""
-                    })
+                    setToggleEdit(false)
                 })
             }
         })
-    }
-
-    function displayErrors() {
-        if (errors) {
-            return (
-                <div id="passenger-add-error" className="error-container">
-                    {errors.map((err, index) => {
-                        return <p key={index} className="error">{err}</p>
-                    })}
-                </div>
-            )
-        } else {
-            return null
-        }
-    }
-
-    if (!show) {
-        return null
     }
 
     return (
         <div className="modal">
             <div className="modal-content">
                 <div className="modal-header">
-                    <h3 className="modal-title">Add Passenger</h3>
+                    <h3 className="modal-title">{formData.legal_first_name} {formData.nickname? `"${formData.nickname}"` : null} {formData.legal_last_name}</h3>
+                    <h6>{formData.position}</h6>
                 </div>
-                <div className="modal-body">
-                    <form id="add-passenger">
+                <div className="modal-body edit">
+                    <form id="edit-passenger">
                         <div className="name">
                             <label htmlFor="legal_first_name" className="required">Legal First Name</label>
                             <input name="legal_first_name" type="text" value={formData.legal_first_name} onChange={handleChange}/>
@@ -225,17 +205,17 @@ function AddPassenger({ show, onClose }) {
                             <div className="seat-options">
                                 <div className="seat-wrapper">
                                     <label className="seat-option" htmlFor="window">Window</label>
-                                    <input name="window" type="checkbox" value="Window" onChange={handleSeatChange}/>
+                                    <input name="window" type="checkbox" value="Window" checked={formData.seat_assignment_pref.includes("Window") ? true : false} onChange={handleSeatChange}/>
                                 </div>
 
                                 <div className="seat-wrapper">
                                     <label className="seat-option" htmlFor="middle">Middle</label>
-                                    <input name="middle" type="checkbox" value="Middle" onChange={handleSeatChange}/>
+                                    <input name="middle" type="checkbox" value="Middle" checked={formData.seat_assignment_pref.includes("Middle") ? true : false} onChange={handleSeatChange}/>
                                 </div>
                                 
                                 <div className="seat-wrapper">
                                     <label className="seat-option" htmlFor="aisle">Aisle</label>
-                                    <input name="aisle" type="checkbox" value="Aisle" onChange={handleSeatChange}/>
+                                    <input name="aisle" type="checkbox" value="Aisle" checked={formData.seat_assignment_pref.includes("Aisle") ? true : false} onChange={handleSeatChange}/>
                                 </div>
                             </div>
                         </div>
@@ -248,12 +228,12 @@ function AddPassenger({ show, onClose }) {
                     </form>
                 </div>
                 <div className="modal-footer">
-                    <button className="modal-button" onClick={discardModal}>Discard</button>
-                    <button className="modal-button modal-save" onClick={savePassenger}>Save</button>
+                    <button className="modal-button" onClick={() => setToggleEdit(false)}>Discard Changes</button>
+                    <button className="modal-button modal-save" onClick={handleUpdate}>Save</button>
                 </div>
             </div>
         </div>
     )
 }
 
-export default AddPassenger;
+export default EditPassenger;

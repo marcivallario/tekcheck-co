@@ -27,8 +27,14 @@ const passengersSlice = createSlice({
       state.passengersList = state.passengersList.filter(pass => pass.id != action.payload.id)
     },
     updatePassenger: (state, action) => {
-      const passenger = state.passengersList.find(pass => pass.id === action.payload.id);
-      passenger = action.payload
+      state.passengersList = state.passengersList.map(pass => {
+        if (pass.id != action.payload.id) {
+          return pass
+        } 
+        else if (pass.id === action.payload.id) {
+          return action.payload
+        }
+      })
     }
   },
   extraReducers: {

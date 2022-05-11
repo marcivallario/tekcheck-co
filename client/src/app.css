@@ -12,7 +12,7 @@ picture {
   display: block;
 }
 
-/* Global Styles */
+/*********** Global Styles ***********/
 
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 
@@ -49,4 +49,81 @@ a:hover {
   justify-content: center;
   align-items: center;
   background-color: #ffffff46;
+}
+
+/*********** Modals ***********/
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #00000080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1300;
+}
+
+.modal-header,
+.modal-footer {
+  border-top: none;
+  border-bottom: none;
+}
+
+.modal-content {
+  width: 75%;
+  max-width: 1000px;
+  background-color: #fff;
+  border: none;
+  box-shadow: 0px 10px 25px 4px rgba(0, 0, 0, 0.25);
+  max-height: 100vh;
+  overflow: scroll;
+}
+
+.modal-title {
+  margin: 0;
+}
+
+.modal-body {
+  padding: 2em;
+}
+
+.modal-footer {
+  gap: 1em;
+
+}
+
+.modal-button {
+  background-color: #fff;
+  border: none;
+  color: #FF7E3D;
+  text-transform: uppercase;
+  border-radius: 10px;
+  padding: 5px 15px;
+  font-weight: 800;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: 500ms;
+}
+
+.modal-button:hover {
+  background-color: #ffe3d5;
+  transition: 500ms;
+}
+
+.modal-button:active {
+  background-color: #c0c0c0;
+  color: #fff;
+  transition: 500ms;
+}
+
+.modal-save {
+  color: #fff;
+  background-color: #FF7E3D;
+}
+
+.modal-save:hover {
+  background-color: #ffc6a9;
 }
