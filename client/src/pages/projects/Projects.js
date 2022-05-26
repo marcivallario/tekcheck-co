@@ -34,7 +34,7 @@ function Projects() {
         const prodCo = project.prod_co.toLowerCase()
         const searchTerm = search.toLowerCase()
         return jobName.includes(searchTerm) || prodCo.includes(searchTerm || search === '')
-    });
+    }).sort((a,b) => (a.job_no < b.job_no) ? 1 : -1)
 
     function updateSeach(e) {
         setSearch(e.target.value);
@@ -57,7 +57,6 @@ function Projects() {
             <TableContainer 
                 component={Card}
                 sx={{ 
-                    padding: "10px",
                     overflow: "scroll",
                     boxShadow: "0px 0px 25px 8px rgba(0,0,0,0.1)",
                     borderRadius: "12px",

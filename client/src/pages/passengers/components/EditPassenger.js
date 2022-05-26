@@ -91,7 +91,7 @@ function EditPassenger({ passenger, onClose, setToggleEdit }) {
 
     function handleSeatChange(e) {
         let seatOptions = formData.seat_assignment_pref
-        e.target.checked ? seatOptions.push(e.target.value) : seatOptions = seatOptions.filter(o => o != e.target.value)
+        e.target.checked ? seatOptions.push(e.target.value) : seatOptions = seatOptions.filter(o => o !== e.target.value)
         setFormData({...formData, seat_assignment_pref: seatOptions})
     }
 
@@ -115,6 +115,7 @@ function EditPassenger({ passenger, onClose, setToggleEdit }) {
                 resp.json().then(resp => setErrors(resp.errors))
             } else {
                 resp.json().then(updatedPassenger => {
+                    console.log(updatedPassenger)
                     dispatch(updatePassenger(updatedPassenger))
                     onClose()
                     setToggleEdit(false)

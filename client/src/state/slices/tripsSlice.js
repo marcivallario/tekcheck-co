@@ -24,10 +24,10 @@ const tripsSlice = createSlice({
       state.tripsList.push(action.payload)
     },
     removeTrip: (state, action) => {
-      state.tripsList.filter(trip => trip.id != action.payload.id)
+      state.tripsList.filter(trip => trip.id !== action.payload.id)
     },
     updateTrip: (state, action) => {
-      const trip = state.tripsList.find(trip => trip.id === action.payload.id);
+      let trip = state.tripsList.find(trip => trip.id === action.payload.id);
       trip = action.payload
     }
   },

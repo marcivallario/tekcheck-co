@@ -13,7 +13,6 @@ function TripsInProgress() {
         <TableContainer 
             component={Card}
             sx={{ 
-                padding: "10px",
                 height: "100%",
                 overflow: "scroll",
                 boxShadow: "0px 0px 25px 8px rgba(0,0,0,0.1)",

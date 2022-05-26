@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ViewProject from './ViewProject';
+import EditProject from './EditProject';
 
 
 
@@ -11,7 +12,7 @@ function ViewEditProject({ onClose, show, project }) {
     }
 
     if (toggleEdit) {
-        return <p>Edit</p>
+        return <EditProject onClose={onClose} project={project} setToggleEdit={setToggleEdit}/>
     } else {
         return <ViewProject onClose={onClose} project={project} setToggleEdit={setToggleEdit}/>
     }

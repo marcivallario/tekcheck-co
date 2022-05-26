@@ -76,8 +76,7 @@ function Passengers() {
             </div>
             <TableContainer 
                 component={Card}
-                sx={{ 
-                    padding: "10px",
+                sx={{
                     overflow: "scroll",
                     boxShadow: "0px 0px 25px 8px rgba(0,0,0,0.1)",
                     borderRadius: "12px",

@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+    wrap_parameters format: []
+    
     def index 
         current_user = User.find_by(id: session[:user_id])
         if (current_user) 
@@ -34,6 +36,6 @@ class ProjectsController < ApplicationController
     private
 
     def project_params
-        params.permit(:job_no, :job_name, :prod_co, :active, :user_id)
+        params.permit(:job_no, :job_name, :prod_co, :active, :user_id, :id)
     end
 end

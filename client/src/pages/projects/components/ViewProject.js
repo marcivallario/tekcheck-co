@@ -3,6 +3,7 @@ import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutline
 import './viewproject.css';
 
 function ViewProject({ project, onClose, setToggleEdit }) {
+    console.log('VIEW: ', project)
     return (
         <div className="modal">
             <div className="modal-content">

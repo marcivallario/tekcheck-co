@@ -24,11 +24,17 @@ const projectsSlice = createSlice({
       state.projectsList.push(action.payload)
     },
     removeProject: (state, action) => {
-      state.projectsList.filter(proj => proj.id != action.payload.id)
+      state.projectsList.filter(proj => proj.id !== action.payload.id)
     },
     updateProject: (state, action) => {
-      const project = state.projectsList.find(proj => proj.id === action.payload.id);
-      project = action.payload
+      state.projectsList = state.projectsList.map(proj => {
+        if (proj.id !== action.payload.id) {
+          return proj
+        } 
+        else if (proj.id === action.payload.id) {
+          return action.payload
+        }
+      })
     }
   },
   extraReducers: {
