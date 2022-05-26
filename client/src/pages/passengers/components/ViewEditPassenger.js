@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ViewPassenger from './ViewPassenger';
 import EditPassenger from './EditPassenger';
 

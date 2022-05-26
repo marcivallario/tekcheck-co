@@ -151,7 +151,7 @@ function Passengers() {
                                         whiteSpace: "nowrap"
                                         }}><a href={`mailto:${pass.email}`}>{pass.email}</a></TableCell>
                                     <TableCell sx={{border: "none", fontWeight: "500"}}>
-                                        <div className="passenger-actions">
+                                        <div className="actions">
                                             <IconButton onClick={() => {
                                             setShowViewEdit(true)
                                             setSelectedPassenger(pass)

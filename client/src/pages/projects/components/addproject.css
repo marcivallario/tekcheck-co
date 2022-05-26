@@ -1,0 +1,16 @@
+#add-project {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 1.25em;
+}
+
+#project-add-error {
+    grid-column: span 2;
+    width: 100%;
+}
+
+@media (max-width: 599px) {
+    .modal-content {
+        width: 90%;
+    }
+}
