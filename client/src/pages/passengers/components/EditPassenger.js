@@ -115,7 +115,6 @@ function EditPassenger({ passenger, onClose, setToggleEdit }) {
                 resp.json().then(resp => setErrors(resp.errors))
             } else {
                 resp.json().then(updatedPassenger => {
-                    console.log(updatedPassenger)
                     dispatch(updatePassenger(updatedPassenger))
                     onClose()
                     setToggleEdit(false)

@@ -54,7 +54,6 @@ function EditProject({ project, onClose, setToggleEdit}) {
                 })
             }
         })
-        // console.log(formData)
     }
 
     function displayErrors() {
