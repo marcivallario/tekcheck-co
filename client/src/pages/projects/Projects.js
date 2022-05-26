@@ -14,18 +14,27 @@ import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import AddProject from './components/AddProject';
+import ViewEditProject from './components/ViewEditProject';
 
 function Projects() {
     const projects = useSelector(state => state.projects)
     const [ search, setSearch ] = useState('');
     const [ showAdd, setShowAdd ] = useState(false);
+    const [ showViewEdit, setShowViewEdit ] = useState(false);
+    const [ selectedProject, setSelectedProject ] = useState({
+        user_id: '',
+        job_no: '',
+        job_name: '',
+        prod_co: '',
+        active: ''
+    })
 
     const filteredProjects = projects.projectsList.filter(project => {
         const jobName = project.job_name.toLowerCase()
         const prodCo = project.prod_co.toLowerCase()
         const searchTerm = search.toLowerCase()
         return jobName.includes(searchTerm) || prodCo.includes(searchTerm || search === '')
-    });
+    }).sort((a,b) => (a.job_no < b.job_no) ? 1 : -1)
 
     function updateSeach(e) {
         setSearch(e.target.value);
@@ -48,7 +57,6 @@ function Projects() {
             <TableContainer 
                 component={Card}
                 sx={{ 
-                    padding: "10px",
                     overflow: "scroll",
                     boxShadow: "0px 0px 25px 8px rgba(0,0,0,0.1)",
                     borderRadius: "12px",
@@ -105,7 +113,9 @@ function Projects() {
                                     </TableCell>
                                     <TableCell sx={{border: "none", fontWeight: "500"}}>
                                         <div className="actions">
-                                            <IconButton><VisibilityRoundedIcon sx={{ color: "#FF7E3D", cursor: "pointer"}} /></IconButton>
+                                            <IconButton onClick={() => {
+                                            setShowViewEdit(true)
+                                            setSelectedProject(proj)}}><VisibilityRoundedIcon sx={{ color: "#FF7E3D", cursor: "pointer"}} /></IconButton>
 
                                             <IconButton><DeleteRoundedIcon sx={{ color: "#FF7E3D", cursor: "pointer"}}/></IconButton>
                                         </div>
@@ -118,6 +128,7 @@ function Projects() {
             </TableContainer>
             <button className="add-record" onClick={() => setShowAdd(true)}>+</button>
             <AddProject onClose={() => setShowAdd(false)} show={showAdd} />
+            <ViewEditProject onClose={() => setShowViewEdit(false)} show={showViewEdit} project={selectedProject}/>
         </div>
     )
 }
