@@ -34,6 +34,6 @@ class ProjectsController < ApplicationController
     private
 
     def project_params
-        params.permit(:job_no, :job_name, :production_co, :active, :user_id)
+        params.permit(:job_no, :job_name, :prod_co, :active, :user_id)
     end
 end
