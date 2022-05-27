@@ -7,6 +7,7 @@ import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
 import CheckBoxRoundedIcon from '@mui/icons-material/CheckBoxRounded';
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
+import PageLoading from '../../common/components/PageLoading';
 
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
@@ -31,7 +32,11 @@ function Trips() {
     } 
 
     if (trips.isLoading === true) {
-        return <h1>Loading...</h1>
+        return (
+            <div id="data-loading">
+                <PageLoading height="10vh" width="10vh"/>
+            </div> 
+        )
     }
 
     return (
