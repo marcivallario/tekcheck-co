@@ -16,7 +16,7 @@ class TripsController < ApplicationController
     def create 
         auth_user = auth
         selected_project = auth_user.projects.find_by(id: params[:project_id])
-        new_trip = selected_project.trips.create!(trips_params)
+        new_trip = selected_project.trips.create!(depart: Date.parse(params[:depart]), return: Date.parse(params[:return]), itinerary_sent: params[:itinerary_sent], passenger_id: params[:passenger_id])
         render json: new_trip, status: :created
     end
 
