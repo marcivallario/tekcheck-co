@@ -28,6 +28,28 @@ function Trips() {
         return firstName.includes(searchTerm) || lastName.includes(searchTerm || search === '')
     }).sort((a,b) => (a.depart < b.depart) ? 1 : -1)
 
+    const formatDate = (dateString) => {
+        const months = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December'
+        ]
+       const d = new Date(dateString)
+       const year = d.getFullYear()
+       const date = d.getDate()
+       const month = months[d.getMonth()]
+       return `${month} ${date}, ${year}`
+    }
+
     function updateSeach(e) {
         setSearch(e.target.value);
     }
@@ -99,7 +121,7 @@ function Trips() {
                                         fontWeight: "500",
                                         display: { xs: 'none', sm: 'table-cell' },
                                         whiteSpace: "nowrap"
-                                        }}>{trip.depart} - {trip.return}</TableCell>
+                                        }}>{formatDate(trip.depart)} - {formatDate(trip.return)}</TableCell>
                                     <TableCell sx={{border: "none", fontWeight: "500", whiteSpace: "nowrap"}}>
                                             {trip.itinerary_sent ? <CheckBoxRoundedIcon sx={{ color: "#72DCE8"}}/> : <CheckBoxOutlineBlankRoundedIcon sx={{ color: "#72DCE8"}}/>}
                                     </TableCell>
