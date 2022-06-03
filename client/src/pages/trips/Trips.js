@@ -122,7 +122,7 @@ function Trips() {
                                         display: { xs: 'none', sm: 'table-cell' },
                                         whiteSpace: "nowrap"
                                         }}>{formatDate(trip.depart)} - {formatDate(trip.return)}</TableCell>
-                                    <TableCell sx={{border: "none", fontWeight: "500", whiteSpace: "nowrap"}}>
+                                    <TableCell sx={{border: "none", fontWeight: "500", whiteSpace: "nowrap", textAlign: "center"}}>
                                             {trip.itinerary_sent ? <CheckBoxRoundedIcon sx={{ color: "#72DCE8"}}/> : <CheckBoxOutlineBlankRoundedIcon sx={{ color: "#72DCE8"}}/>}
                                     </TableCell>
                                     <TableCell sx={{border: "none", fontWeight: "500"}}>

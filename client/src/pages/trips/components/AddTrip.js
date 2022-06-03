@@ -1,8 +1,14 @@
 import Divider from '@mui/material/Divider';
+import FlightRoundedIcon from '@mui/icons-material/FlightRounded';
+import LocalTaxiRoundedIcon from '@mui/icons-material/LocalTaxiRounded';
+import HotelRoundedIcon from '@mui/icons-material/HotelRounded';
+
 
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { addTrip } from '../../../state/slices/tripsSlice';
+import './addtrip.css'
+import AddFlight from './AddFlight';
 
 function AddTrip({ show, onClose }) {
     const dispatch = useDispatch();     
@@ -17,6 +23,9 @@ function AddTrip({ show, onClose }) {
         project_id: 0,
         passenger_id: 0
     })
+    const [ flightFormData, setFlightFormData ] = useState([]) 
+    const [ transpoFormData, setTranspoFormData ] = useState([]) 
+    const [ accFormData, setAccFormData ] = useState([])
     const [ errors, setErrors ] = useState(null)
 
     function handleDropdownChange(e) {
@@ -34,6 +43,21 @@ function AddTrip({ show, onClose }) {
         const value = e.target.value;
         setFormData({...formData, [key]: value})
     }
+    
+    function AddAnotherFlight(e) {
+        setFlightFormData([...flightFormData, {
+            leg: '',
+            airline: '',
+            flight_no: '',
+            dep_airport: '',
+            dep_time: '',
+            arr_airport: '',
+            arr_time: '',
+            seat: '',
+            confirmation: '',
+            notes: ''
+        }])
+    }
 
     function discardModal() {
         setFormData({
@@ -44,6 +68,9 @@ function AddTrip({ show, onClose }) {
             project_id: 0,
             passenger_id: 0
         })
+        setFlightFormData([])
+        setTranspoFormData([])
+        setAccFormData([])
         onClose()
     }
 
@@ -86,8 +113,6 @@ function AddTrip({ show, onClose }) {
         return null
     }
 
-    console.log(formData)
-
     return (
         <div className="modal">
             <div className="modal-content">
@@ -127,7 +152,22 @@ function AddTrip({ show, onClose }) {
                             <input name="itinerary_sent" type="checkbox" value={formData.itinerary_sent} onChange={handleCheckboxChange}/>
                         </div>
                         {displayErrors()}
-                        <Divider />
+                        <Divider sx={{marginTop: "1em", marginBottom: "1em"}}/>
+                        <div className="add-buttons">
+                            <div className="trip-add-detail" onClick={AddAnotherFlight}>
+                                <FlightRoundedIcon sx={{ color: "#FF7E3D"}}/>
+                                <h6>Add Flight</h6>
+                            </div>
+                            <div className="trip-add-detail" >
+                                <LocalTaxiRoundedIcon sx={{ color: "#FF7E3D"}}/>
+                                <h6>Add Transportation</h6>
+                            </div>
+                            <div className="trip-add-detail" >
+                                <HotelRoundedIcon sx={{ color: "#FF7E3D"}}/>
+                                <h6>Add Accomodation</h6>
+                            </div>
+                        </div>
+                        <AddFlight flightFormData={flightFormData} setFlightFormData={setFlightFormData}/>
                     </form>
                 </div>
                 <div className="modal-footer">
