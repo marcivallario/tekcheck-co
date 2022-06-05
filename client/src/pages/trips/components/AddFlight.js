@@ -14,8 +14,6 @@ function AddFlight({ flightFormData, setFlightFormData }) {
         setFlightFormData(updatedFlightList)
     }
 
-    console.log(flightFormData)
-
     return (
         flightFormData.map((flight, idx) => {
             return (

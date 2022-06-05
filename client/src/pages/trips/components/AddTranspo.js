@@ -14,8 +14,6 @@ function AddTranspo({ transpoFormData, setTranspoFormData }) {
         setTranspoFormData(updatedTranspoList)
     }
 
-    console.log(transpoFormData)
-
     return(
         transpoFormData.map((transpo, idx) => {
             return (

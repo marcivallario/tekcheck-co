@@ -10,6 +10,7 @@ import { addTrip } from '../../../state/slices/tripsSlice';
 import './addtrip.css'
 import AddFlight from './AddFlight';
 import AddTranspo from './AddTranspo';
+import AddAcc from './AddAcc';
 
 function AddTrip({ show, onClose }) {
     const dispatch = useDispatch();     
@@ -28,6 +29,11 @@ function AddTrip({ show, onClose }) {
     const [ transpoFormData, setTranspoFormData ] = useState([]) 
     const [ accFormData, setAccFormData ] = useState([])
     const [ errors, setErrors ] = useState(null)
+
+    // console.log('Form: ', formData);
+    // console.log('Flight: ', flightFormData);
+    // console.log('Transpo: ', transpoFormData);
+    // console.log('Acc: ', accFormData);
 
     function handleDropdownChange(e) {
         const key = e.target.name;
@@ -70,6 +76,23 @@ function AddTrip({ show, onClose }) {
         }])
     }
 
+    function AddAnotherAcc(e) {
+        setAccFormData([...accFormData, {
+            checkin: '',
+            checkout: '',
+            acc_type: '',
+            name: '',
+            address_1: '',
+            address_2: '',
+            city: '',
+            state: '',
+            zip: '',
+            confirmation: '',
+            phone: '',
+            notes: ''
+        }])
+    }
+
     function discardModal() {
         setFormData({
             user_id: userId,
@@ -98,7 +121,6 @@ function AddTrip({ show, onClose }) {
                 resp.json().then(resp => setErrors([...resp.errors]))
             } else {
                 resp.json().then(newTrip => {
-                    console.log('NEW TRIP: ', newTrip)
                     dispatch(addTrip(newTrip))
                     discardModal()
                 })
@@ -173,13 +195,14 @@ function AddTrip({ show, onClose }) {
                                 <LocalTaxiRoundedIcon sx={{ color: "#FF7E3D"}}/>
                                 <h6>Add Transportation</h6>
                             </div>
-                            <div className="trip-add-detail" >
+                            <div className="trip-add-detail" onClick={AddAnotherAcc}>
                                 <HotelRoundedIcon sx={{ color: "#FF7E3D"}}/>
                                 <h6>Add Accomodation</h6>
                             </div>
                         </div>
                         <AddFlight flightFormData={flightFormData} setFlightFormData={setFlightFormData}/>
                         <AddTranspo transpoFormData={transpoFormData} setTranspoFormData={setTranspoFormData}/>
+                        <AddAcc accFormData={accFormData} setAccFormData={setAccFormData} />
                     </form>
                 </div>
                 <div className="modal-footer">
