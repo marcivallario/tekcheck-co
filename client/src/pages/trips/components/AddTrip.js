@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { addTrip } from '../../../state/slices/tripsSlice';
 import './addtrip.css'
 import AddFlight from './AddFlight';
+import AddTranspo from './AddTranspo';
 
 function AddTrip({ show, onClose }) {
     const dispatch = useDispatch();     
@@ -44,7 +45,7 @@ function AddTrip({ show, onClose }) {
         setFormData({...formData, [key]: value})
     }
     
-    function AddAnotherFlight(e) {
+    function addAnotherFlight(e) {
         setFlightFormData([...flightFormData, {
             leg: '',
             airline: '',
@@ -54,6 +55,16 @@ function AddTrip({ show, onClose }) {
             arr_airport: '',
             arr_time: '',
             seat: '',
+            confirmation: '',
+            notes: ''
+        }])
+    }
+
+    function addAnotherTranspo(e) {
+        setTranspoFormData([...transpoFormData, {
+            direction: '',
+            date: '',
+            trans_mode: '',
             confirmation: '',
             notes: ''
         }])
@@ -154,11 +165,11 @@ function AddTrip({ show, onClose }) {
                         {displayErrors()}
                         <Divider sx={{marginTop: "1em", marginBottom: "1em"}}/>
                         <div className="add-buttons">
-                            <div className="trip-add-detail" onClick={AddAnotherFlight}>
+                            <div className="trip-add-detail" onClick={addAnotherFlight}>
                                 <FlightRoundedIcon sx={{ color: "#FF7E3D"}}/>
                                 <h6>Add Flight</h6>
                             </div>
-                            <div className="trip-add-detail" >
+                            <div className="trip-add-detail" onClick={addAnotherTranspo}>
                                 <LocalTaxiRoundedIcon sx={{ color: "#FF7E3D"}}/>
                                 <h6>Add Transportation</h6>
                             </div>
@@ -168,6 +179,7 @@ function AddTrip({ show, onClose }) {
                             </div>
                         </div>
                         <AddFlight flightFormData={flightFormData} setFlightFormData={setFlightFormData}/>
+                        <AddTranspo transpoFormData={transpoFormData} setTranspoFormData={setTranspoFormData}/>
                     </form>
                 </div>
                 <div className="modal-footer">
