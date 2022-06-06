@@ -24,7 +24,7 @@ const tripsSlice = createSlice({
       state.tripsList.push(action.payload)
     },
     removeTrip: (state, action) => {
-      state.tripsList.filter(trip => trip.id !== action.payload.id)
+      state.tripsList = state.tripsList.filter(trip => trip.id !== action.payload.id)
     },
     updateTrip: (state, action) => {
       let trip = state.tripsList.find(trip => trip.id === action.payload.id);

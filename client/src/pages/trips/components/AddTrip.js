@@ -22,8 +22,8 @@ function AddTrip({ show, onClose }) {
         depart: '',
         return: '',
         itinerary_sent: false,
-        project_id: 0,
-        passenger_id: 0
+        project_id: null,
+        passenger_id: null
     })
     const [ flightFormData, setFlightFormData ] = useState([]) 
     const [ transpoFormData, setTranspoFormData ] = useState([]) 
@@ -100,6 +100,7 @@ function AddTrip({ show, onClose }) {
         setFlightFormData([])
         setTranspoFormData([])
         setAccFormData([])
+        setErrors(null)
         onClose()
     }
 
@@ -208,37 +209,40 @@ function AddTrip({ show, onClose }) {
                 </div>
                 <div className="modal-body">
                     <form id="add-trip">
-                        <div className="choose-passenger">
-                            <label htmlFor="passenger_id" className="required">Passenger</label>
-                            <select value={(formData.passenger_id)} name="passenger_id" onChange={handleDropdownChange}>
-                                <option value={0} disabled hidden>Choose a Passenger</option>
-                                    {passengers.map(passenger => {
-                                        return <option key={passenger.id} value={parseInt(passenger.id)}>{passenger.legal_first_name} {passenger.legal_last_name}</option>
+                        <div className="set-detail">
+                            <div className="choose-passenger">
+                                <label htmlFor="passenger_id" className="required">Passenger</label>
+                                <select value={(formData.passenger_id || 0)} name="passenger_id" onChange={handleDropdownChange}>
+                                    <option value={0} disabled hidden>Choose a Passenger</option>
+                                        {passengers.map(passenger => {
+                                            return <option key={passenger.id} value={parseInt(passenger.id)}>{passenger.legal_first_name} {passenger.legal_last_name}</option>
+                                        })}
+                                </select>
+                            </div>
+                            <div className="choose-project">
+                                <label htmlFor="project_id" className="required">Project</label>
+                                <select value={(formData.project_id || 0)} name="project_id" id="select-project" onChange={handleDropdownChange}>
+                                    <option value={0} disabled hidden>Choose a Project</option>
+                                    {projects.map(project => {
+                                        return <option key={project.id} value={project.id}>#{project.job_no} "{project.job_name}"</option>
                                     })}
-                            </select>
+                                </select>
+                            </div>
+                            <div className="trip-detail">
+                                <label htmlFor="depart" className="required">Departure Date</label>
+                                <input name="depart" type="date" min="1900-01-01" value={formData.depart} onChange={handleChange}/>
+                            </div>
+                            <div className="trip-detail">
+                                <label htmlFor="return" className="required">Return Date</label>
+                                <input name="return" type="date" min={formData.depart} value={formData.return} onChange={handleChange}/>
+                            </div>
+                            <div className="trip-detail">
+                                <label htmlFor="itinerary_sent" >Itinerary Sent?</label>
+                                <input name="itinerary_sent" type="checkbox" value={formData.itinerary_sent} onChange={handleCheckboxChange}/>
+                            </div>
+                            {displayErrors()}
                         </div>
-                        <div className="choose-project">
-                            <label htmlFor="project_id" className="required">Project</label>
-                            <select value={(formData.project_id)} name="project_id" id="select-project" onChange={handleDropdownChange}>
-                                <option value={0} disabled hidden>Choose a Project</option>
-                                {projects.map(project => {
-                                    return <option key={project.id} value={project.id}>#{project.job_no} "{project.job_name}"</option>
-                                })}
-                            </select>
-                        </div>
-                        <div className="depart">
-                            <label htmlFor="depart" className="required">Departure Date</label>
-                            <input name="depart" type="date" min="1900-01-01" value={formData.depart} onChange={handleChange}/>
-                        </div>
-                        <div className="return">
-                            <label htmlFor="return" className="required">Return Date</label>
-                            <input name="return" type="date" min={formData.depart} value={formData.return} onChange={handleChange}/>
-                        </div>
-                        <div className="itinerary_sent">
-                            <label htmlFor="itinerary_sent" className="required">Itinerary Sent?</label>
-                            <input name="itinerary_sent" type="checkbox" value={formData.itinerary_sent} onChange={handleCheckboxChange}/>
-                        </div>
-                        {displayErrors()}
+
                         <Divider sx={{marginTop: "1em", marginBottom: "1em"}}/>
                         <div className="add-buttons">
                             <div className="trip-add-detail" onClick={addAnotherFlight}>

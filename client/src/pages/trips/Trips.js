@@ -12,12 +12,14 @@ import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import PageLoading from '../../common/components/PageLoading';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { removeTrip } from '../../state/slices/tripsSlice';
 import AddTrip from './components/AddTrip';
 import "./trips.css"
 
 function Trips() {
+    const dispatch = useDispatch(); 
     const trips = useSelector(state => state.trips)
     const [ search, setSearch ] = useState('');
     const [ showAdd, setShowAdd ] = useState(false);
@@ -45,13 +47,20 @@ function Trips() {
         ]
        const d = new Date(dateString)
        const year = d.getFullYear()
-       const date = d.getDate()
+       const date = d.getDate() + 1
        const month = months[d.getMonth()]
        return `${month} ${date}, ${year}`
     }
 
     function updateSeach(e) {
         setSearch(e.target.value);
+    }
+
+    function handleDelete(trip) {
+        fetch(`/trips/${trip.id}`, {
+            method: 'DELETE'
+            })
+        .then(dispatch(removeTrip(trip)));
     }
 
     if (trips.isLoading === true) {
@@ -127,9 +136,9 @@ function Trips() {
                                     </TableCell>
                                     <TableCell sx={{border: "none", fontWeight: "500"}}>
                                         <div className="actions">
-                                            <IconButton><VisibilityRoundedIcon sx={{ color: "#FF7E3D", cursor: "pointer"}} /></IconButton>
+                                            {/* <IconButton><VisibilityRoundedIcon sx={{ color: "#FF7E3D", cursor: "pointer"}} /></IconButton> */}
 
-                                            <IconButton><DeleteRoundedIcon sx={{ color: "#FF7E3D", cursor: "pointer"}}/></IconButton>
+                                            <IconButton onClick={() => handleDelete(trip)}><DeleteRoundedIcon sx={{ color: "#FF7E3D", cursor: "pointer"}}/></IconButton>
                                         </div>
                                     </TableCell>
                                 </TableRow>
