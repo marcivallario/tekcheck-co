@@ -30,11 +30,6 @@ function AddTrip({ show, onClose }) {
     const [ accFormData, setAccFormData ] = useState([])
     const [ errors, setErrors ] = useState(null)
 
-    // console.log('Form: ', formData);
-    // console.log('Flight: ', flightFormData);
-    // console.log('Transpo: ', transpoFormData);
-    // console.log('Acc: ', accFormData);
-
     function handleDropdownChange(e) {
         const key = e.target.name;
         const value = parseInt(e.target.value);
@@ -121,6 +116,65 @@ function AddTrip({ show, onClose }) {
                 resp.json().then(resp => setErrors([...resp.errors]))
             } else {
                 resp.json().then(newTrip => {
+                    if (flightFormData.length > 0) {
+                        const updatedFlightAdds = flightFormData.map(flight => {
+                            flight.trip_id = newTrip.id
+                            return flight
+                        })
+                        updatedFlightAdds.forEach(flight => {
+                            fetch('/flights', {
+                                method: 'POST',
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify(flight)
+                            }).then(resp => resp.json())
+                            .then(newFlight => {
+                                console.log('submitted')
+                            })
+                        })
+                    }
+
+                    if (transpoFormData.length > 0) {
+                        const updatedTranspoAdds = transpoFormData.map(transpo => {
+                            transpo.trip_id = newTrip.id
+                            return transpo
+                        })
+                        updatedTranspoAdds.forEach(transpo => {
+                            fetch('/transportations', {
+                                method: 'POST',
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify(transpo)
+                            }).then(resp => resp.json())
+                            .then(newTranspo => {
+                                console.log('submitted')
+                            })
+                        })
+                    }
+
+                    if (accFormData.length > 0) {
+                        const updatedAccAdds = accFormData.map(acc => {
+                            acc.trip_id = newTrip.id
+                            return acc
+                        })
+                        updatedAccAdds.forEach(acc => {
+                            fetch('/accommodations', {
+                                method: 'POST',
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify(acc)
+                            }).then(resp => resp.json())
+                            .then(newAcc => {
+                                console.log('submitted')
+                            })
+                        })
+                    }
+                    newTrip.flights = flightFormData;
+                    newTrip.transportations = transpoFormData;
+                    newTrip.accommodations = accFormData;
                     dispatch(addTrip(newTrip))
                     discardModal()
                 })
