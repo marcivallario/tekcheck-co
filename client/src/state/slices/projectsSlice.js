@@ -24,7 +24,7 @@ const projectsSlice = createSlice({
       state.projectsList.push(action.payload)
     },
     removeProject: (state, action) => {
-      state.projectsList.filter(proj => proj.id !== action.payload.id)
+      state.projectsList = state.projectsList.filter(proj => proj.id !== action.payload.id)
     },
     updateProject: (state, action) => {
       state.projectsList = state.projectsList.map(proj => {

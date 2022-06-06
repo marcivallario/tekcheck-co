@@ -1,4 +1,6 @@
 class FlightsController < ApplicationController
+    wrap_parameters format: []
+    
      def create
         new_flight = Flight.create!(flight_params)
         render json: new_flight, status: :created

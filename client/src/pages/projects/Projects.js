@@ -10,13 +10,16 @@ import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutline
 import IconButton from '@mui/material/IconButton';
 import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import PageLoading from '../../common/components/PageLoading';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { removeProject } from '../../state/slices/projectsSlice';
 import AddProject from './components/AddProject';
 import ViewEditProject from './components/ViewEditProject';
 
 function Projects() {
+    const dispatch = useDispatch(); 
     const projects = useSelector(state => state.projects)
     const [ search, setSearch ] = useState('');
     const [ showAdd, setShowAdd ] = useState(false);
@@ -40,12 +43,19 @@ function Projects() {
         setSearch(e.target.value);
     }
 
-    if (projects.projectsList.length === 0) {
-        return <p>Add a Project</p>
-    } 
+    function handleDelete(proj) {
+        fetch(`/projects/${proj.id}`, {
+            method: 'DELETE'
+            })
+        .then(dispatch(removeProject(proj)));
+    }
 
     if (projects.isLoading === true) {
-        return <h1>Loading...</h1>
+        return (
+            <div id="data-loading">
+                <PageLoading height="10vh" width="10vh"/>
+            </div> 
+        )
     }
 
     return (
@@ -89,7 +99,7 @@ function Projects() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {filteredProjects.map(proj => {
+                        {projects.projectsList.length === 0? <tr><td className="empty-table" colSpan="6"><p>Click the + to add a project.</p></td></tr> : filteredProjects.map(proj => {
                             return (
                                 <TableRow key={proj.id} sx={{
                                     backgroundColor: "#f9f9f9",
@@ -117,7 +127,7 @@ function Projects() {
                                             setShowViewEdit(true)
                                             setSelectedProject(proj)}}><VisibilityRoundedIcon sx={{ color: "#FF7E3D", cursor: "pointer"}} /></IconButton>
 
-                                            <IconButton><DeleteRoundedIcon sx={{ color: "#FF7E3D", cursor: "pointer"}}/></IconButton>
+                                            <IconButton onClick={() => handleDelete(proj)}><DeleteRoundedIcon sx={{ color: "#FF7E3D", cursor: "pointer"}}/></IconButton>
                                         </div>
                                     </TableCell>
                                 </TableRow>

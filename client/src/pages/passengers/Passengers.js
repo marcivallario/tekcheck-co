@@ -62,7 +62,7 @@ function Passengers() {
 
     if (passengers.isLoading === true) {
         return (
-            <div id="passengers-loading">
+            <div id="data-loading">
                 <PageLoading height="10vh" width="10vh"/>
             </div> 
         )

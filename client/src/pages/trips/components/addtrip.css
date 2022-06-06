@@ -1,0 +1,177 @@
+.set-detail {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 1.25em;
+}
+
+.choose-passenger > label, 
+.choose-project > label,
+.trip-detail > label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #4b4b4b;
+}
+
+.set-detail input, .set-detail select {
+    width: 100%
+}
+
+.set-detail .choose-passenger, .set-detail .choose-project {
+    grid-column: span 3;
+}
+
+.set-detail .trip-detail {
+    grid-column: span 2;
+}
+
+
+.add-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.trip-add-detail {
+    flex-basis: 33%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding: 1em;
+    gap: 0.5em;
+    border-radius: 1em;
+    border: 2px solid transparent;
+    white-space: nowrap;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+.trip-add-detail:hover {
+    border: 2px solid #FF7E3D;
+}
+
+.trip-add-detail h6 {
+    font-weight: 600;
+}
+
+.add-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* FLIGHT ADD */
+
+.flights {
+    background-color: #ececec;
+    padding: 1em;
+    margin: 2em 0;
+}
+
+.flight-add {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 1.25em;
+    margin-bottom: 20px;
+}
+
+.flight-add input,
+.flight-add input[type=text],
+.flight-add input[type=datetime],
+.flight-add textarea {
+    width: 100%;
+}
+
+.flight-add label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #4b4b4b;
+}
+
+.flight-add .flight-details, 
+.flight-add .departure-details, 
+.flight-add .arrival-details, 
+.flight-add .other-flight-details {
+    grid-column: span 2;
+}
+
+.flight-add .flight-notes {
+    grid-column: span 6;
+}
+
+/* TRANSPO ADD */
+.transpos {
+    background-color: #ececec;
+    padding: 1em;
+    margin: 2em 0;
+}
+
+.transpo-add {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 1.25em;
+    margin-bottom: 20px;
+}
+
+.transpo-add input,
+.transpo-add input[type=date],
+.transpo-add textarea {
+    width: 100%;
+}
+
+.transpo-add label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #4b4b4b;
+}
+
+.transpo-add .transpo-detail {
+    grid-column: span 3
+}
+
+.transpo-add .transpo-notes {
+    grid-column: span 6;
+}
+
+/* ACCOMMODATION ADD */
+
+.accs {
+    background-color: #ececec;
+    padding: 1em;
+    margin: 2em 0;
+}
+
+.acc-add {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 1.25em;
+    margin-bottom: 20px;
+}
+
+.acc-add label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #4b4b4b;
+}
+
+.acc-add input,
+.acc-add input[type=datetime],
+.acc-add textarea {
+    width: 100%;
+}
+
+.acc-add .acc-detail,
+.acc-add .street-address,
+.acc-add .res-detail {
+    grid-column: span 3;
+}
+
+.acc-add .address-postal {
+    grid-column: span 2;
+}
+
+.acc-add .notes {
+    grid-column: span 6;
+}

@@ -1,4 +1,7 @@
 class TripsController < ApplicationController
+    wrap_parameters format: []
+    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
+
     def index 
         current_user = User.find_by(id: session[:user_id])
         if (current_user) 
@@ -15,7 +18,7 @@ class TripsController < ApplicationController
 
     def create 
         auth_user = auth
-        selected_project = auth_user.projects.find_by(id: params[:project_id])
+        selected_project = auth_user.projects.find_by!(id: params[:project_id])
         new_trip = selected_project.trips.create!(trips_params)
         render json: new_trip, status: :created
     end
@@ -36,5 +39,9 @@ class TripsController < ApplicationController
 
     def trips_params
         params.permit(:depart, :return, :itinerary_sent, :passenger_id, :project_id);
+    end
+
+    def render_not_found_response
+        render json: { errors: ["Please choose a passenger and a project"] }, status: :not_found
     end
 end

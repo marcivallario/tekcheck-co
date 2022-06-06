@@ -7,31 +7,68 @@ import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
 import CheckBoxRoundedIcon from '@mui/icons-material/CheckBoxRounded';
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
+import IconButton from '@mui/material/IconButton';
+import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import PageLoading from '../../common/components/PageLoading';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { removeTrip } from '../../state/slices/tripsSlice';
+import AddTrip from './components/AddTrip';
 import "./trips.css"
 
 function Trips() {
+    const dispatch = useDispatch(); 
     const trips = useSelector(state => state.trips)
     const [ search, setSearch ] = useState('');
+    const [ showAdd, setShowAdd ] = useState(false);
     const filteredTrips = trips.tripsList.filter(trip => {
         const firstName = trip.passenger.legal_first_name.toLowerCase()
         const lastName = trip.passenger.legal_last_name.toLowerCase()
         const searchTerm = search.toLowerCase()
         return firstName.includes(searchTerm) || lastName.includes(searchTerm || search === '')
-    });
+    }).sort((a,b) => (a.depart < b.depart) ? 1 : -1)
+
+    const formatDate = (dateString) => {
+        const months = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December'
+        ]
+       const d = new Date(dateString)
+       const year = d.getFullYear()
+       const date = d.getDate() + 1
+       const month = months[d.getMonth()]
+       return `${month} ${date}, ${year}`
+    }
 
     function updateSeach(e) {
         setSearch(e.target.value);
     }
 
-    if (trips.tripsList.length === 0) {
-        return <p>Add a Project</p>
-    } 
+    function handleDelete(trip) {
+        fetch(`/trips/${trip.id}`, {
+            method: 'DELETE'
+            })
+        .then(dispatch(removeTrip(trip)));
+    }
 
     if (trips.isLoading === true) {
-        return <h1>Loading...</h1>
+        return (
+            <div id="data-loading">
+                <PageLoading height="10vh" width="10vh"/>
+            </div> 
+        )
     }
 
     return (
@@ -75,7 +112,7 @@ function Trips() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {filteredTrips.map(trip => {
+                        {trips.tripsList.length === 0? <tr><td className="empty-table" colSpan="6"><p>Click the + to add a trip.</p></td></tr> : filteredTrips.map(trip => {
                             return (
                                 <TableRow key={trip.id} sx={{
                                     backgroundColor: "#f9f9f9",
@@ -93,18 +130,25 @@ function Trips() {
                                         fontWeight: "500",
                                         display: { xs: 'none', sm: 'table-cell' },
                                         whiteSpace: "nowrap"
-                                        }}>{trip.depart} - {trip.return}</TableCell>
-                                    <TableCell sx={{border: "none", fontWeight: "500", whiteSpace: "nowrap"}}>
+                                        }}>{formatDate(trip.depart)} - {formatDate(trip.return)}</TableCell>
+                                    <TableCell sx={{border: "none", fontWeight: "500", whiteSpace: "nowrap", textAlign: "center"}}>
                                             {trip.itinerary_sent ? <CheckBoxRoundedIcon sx={{ color: "#72DCE8"}}/> : <CheckBoxOutlineBlankRoundedIcon sx={{ color: "#72DCE8"}}/>}
                                     </TableCell>
-                                    <TableCell sx={{border: "none", fontWeight: "500"}}>View</TableCell>
+                                    <TableCell sx={{border: "none", fontWeight: "500"}}>
+                                        <div className="actions">
+                                            {/* <IconButton><VisibilityRoundedIcon sx={{ color: "#FF7E3D", cursor: "pointer"}} /></IconButton> */}
+
+                                            <IconButton onClick={() => handleDelete(trip)}><DeleteRoundedIcon sx={{ color: "#FF7E3D", cursor: "pointer"}}/></IconButton>
+                                        </div>
+                                    </TableCell>
                                 </TableRow>
                             )
                         })}
                     </TableBody>
                 </Table>
             </TableContainer>
-            <button className="add-record">+</button>
+            <button className="add-record" onClick={() => setShowAdd(true)}>+</button>
+            <AddTrip onClose={() => setShowAdd(false)} show={showAdd} />
         </div>
     )
 }

@@ -33,6 +33,6 @@ pass5 = Passenger.create!(user_id: user1.id, legal_first_name: "Benjamin", legal
 
 # Trips
 
-trip1 = Trip.create!(depart: DateTime.new(2022, 3, 2), return: DateTime.new(2022, 3, 14), itinerary_sent: false, project_id: proj1.id, passenger_id: pass1.id,)
+# trip1 = Trip.create!(depart: DateTime.new(2022, 3, 2), return: DateTime.new(2022, 3, 14), itinerary_sent: false, project_id: proj1.id, passenger_id: pass1.id,)
 
 puts "Seeding complete!"
