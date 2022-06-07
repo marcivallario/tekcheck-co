@@ -2,8 +2,6 @@ import { useState } from 'react';
 import ViewProject from './ViewProject';
 import EditProject from './EditProject';
 
-
-
 function ViewEditProject({ onClose, show, project }) {
     const [toggleEdit, setToggleEdit] = useState(false);
 

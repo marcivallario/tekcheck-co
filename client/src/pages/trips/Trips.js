@@ -16,19 +16,35 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { removeTrip } from '../../state/slices/tripsSlice';
 import AddTrip from './components/AddTrip';
+import ViewEditTrip from './components/ViewEditTrip';
 import "./trips.css"
+
+
 
 function Trips() {
     const dispatch = useDispatch(); 
     const trips = useSelector(state => state.trips)
     const [ search, setSearch ] = useState('');
     const [ showAdd, setShowAdd ] = useState(false);
+    const [ showViewEdit, setShowViewEdit ] = useState(false);
+    const [ selectedTrip, setSelectedTrip ] = useState({
+        user_id: '',
+        depart: '',
+        return: '',
+        itinerary_sent: '',
+        project_id: '',
+        passenger_id: '',
+        flights: [],
+        transportations: [],
+        accommodations: [] 
+    })
+
     const filteredTrips = trips.tripsList.filter(trip => {
         const firstName = trip.passenger.legal_first_name.toLowerCase()
         const lastName = trip.passenger.legal_last_name.toLowerCase()
         const searchTerm = search.toLowerCase()
         return firstName.includes(searchTerm) || lastName.includes(searchTerm || search === '')
-    }).sort((a,b) => (a.depart < b.depart) ? 1 : -1)
+    }).sort((a,b) => (a.depart > b.depart) ? 1 : -1) 
 
     const formatDate = (dateString) => {
         const months = [
@@ -136,7 +152,9 @@ function Trips() {
                                     </TableCell>
                                     <TableCell sx={{border: "none", fontWeight: "500"}}>
                                         <div className="actions">
-                                            {/* <IconButton><VisibilityRoundedIcon sx={{ color: "#FF7E3D", cursor: "pointer"}} /></IconButton> */}
+                                            <IconButton onClick={() => {
+                                            setShowViewEdit(true)
+                                            setSelectedTrip(trip)}}><VisibilityRoundedIcon sx={{ color: "#FF7E3D", cursor: "pointer"}} /></IconButton>
 
                                             <IconButton onClick={() => handleDelete(trip)}><DeleteRoundedIcon sx={{ color: "#FF7E3D", cursor: "pointer"}}/></IconButton>
                                         </div>
@@ -149,6 +167,7 @@ function Trips() {
             </TableContainer>
             <button className="add-record" onClick={() => setShowAdd(true)}>+</button>
             <AddTrip onClose={() => setShowAdd(false)} show={showAdd} />
+            <ViewEditTrip onClose={() => setShowViewEdit(false)} show={showViewEdit} trip={selectedTrip}/>
         </div>
     )
 }
