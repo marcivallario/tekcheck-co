@@ -14,3 +14,7 @@
     grid-template-rows: repeat(3, 1fr);
     color: #e1f9fc
 }
+
+.trip-addons > div:not(:first-child) {
+    margin-top: 2.5em;
+}
