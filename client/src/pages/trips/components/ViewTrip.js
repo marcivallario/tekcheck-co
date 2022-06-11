@@ -1,10 +1,10 @@
 import CheckBoxRoundedIcon from '@mui/icons-material/CheckBoxRounded';
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
-import LocalTaxiRoundedIcon from '@mui/icons-material/LocalTaxiRounded';
 import HotelRoundedIcon from '@mui/icons-material/HotelRounded';
 import Divider from '@mui/material/Divider';
 import './viewtrip.css'
 import ViewFlight from './ViewFlight';
+import ViewTranspo from './ViewTranspo';
 
 function ViewTrip({ onClose, trip, setToggleEdit}) {
     console.log(trip.flights)
@@ -64,8 +64,8 @@ function ViewTrip({ onClose, trip, setToggleEdit}) {
                     </div>
                     <Divider variant="fullWidth" sx={{ margin: "2em 0"}}/>
                     <div className="trip-addons">
-                        {trip.flights.length > 0? 
-                        <ViewFlight flights={trip.flights} toDate={formatDate}/> : null }
+                        {trip.flights.length > 0? <ViewFlight flights={trip.flights} toDate={formatDate}/> : null }
+                        {trip.transportations.length > 0? <ViewTranspo transpos={trip.transportations} toDate={formatDate} /> : null}
                         {/* <div className="view-transpos">
                             <LocalTaxiRoundedIcon />
                         </div>

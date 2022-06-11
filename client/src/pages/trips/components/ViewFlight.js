@@ -21,7 +21,7 @@ function ViewFlight({ flights, toDate }) {
             <Table 
                 sx={{ 
                     overflow: "scroll",
-                    borderSpacing: "0 5px",
+                    borderSpacing: "0 0px",
                     borderCollapse: "separate",
                     width: "100%"
                 }} 
