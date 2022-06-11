@@ -1,0 +1,16 @@
+.trip-main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.trip-main .trip-overview,
+.trip-main .passenger-contact {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    column-gap: 1.75em;
+}
+
+.trip-main .passenger-contact {
+    grid-template-rows: repeat(3, 1fr);
+    color: #e1f9fc
+}
