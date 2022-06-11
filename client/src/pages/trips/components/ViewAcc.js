@@ -3,13 +3,29 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import LocalTaxiRoundedIcon from '@mui/icons-material/LocalTaxiRounded';
+import HotelRoundedIcon from '@mui/icons-material/HotelRounded';
 
-function ViewTranspo({ transpos, toDate }) {
-    console.log(transpos)
+function ViewAcc({ accs, toDate }) {
+    accs = [...accs].sort((a,b) => (new Date(a.checkin) > new Date(b.checkin)) ? 1 : -1)
+
+    function tConvert(time) {
+        time = time.match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+        if (time.length > 1) { 
+            time = time.slice(1); 
+            time[5] = +time[0] < 12 ? ' AM' : ' PM'; 
+            time[0] = +time[0] % 12 || 12; 
+        }
+        return time.join(''); 
+    }
+
+    function formatDateTime(str) {
+        let time = tConvert(str.slice(11,16))
+        let date = toDate(str.slice(0,10))
+        return `${date} ${time}`
+    }
 
     return (
-        <div className="view-transpos">
+        <div className="view-accs">
             <Table 
                 sx={{ 
                     overflow: "scroll",
@@ -29,11 +45,11 @@ function ViewTranspo({ transpos, toDate }) {
                             color: "white",
                             fontSize: "1.25em"
                         }}>
-                            <LocalTaxiRoundedIcon sx={{ 
+                            <HotelRoundedIcon sx={{ 
                                 color: "white", 
                                 marginRight: "1em"
                             }}/>
-                            Transportation
+                            Accommodations
                         </TableCell>
                     </TableRow>
                     <TableRow>
@@ -41,17 +57,27 @@ function ViewTranspo({ transpos, toDate }) {
                             border: "0", 
                             fontWeight: "700",
                             backgroundColor: "#e1f9fc",
-                            }}>Direction</TableCell>
+                            }}>Name</TableCell>
                         <TableCell sx={{
                             border: "0", 
                             fontWeight: "700",
                             backgroundColor: "#e1f9fc"
-                            }}>Date</TableCell>
+                            }}>Checkin</TableCell>
                         <TableCell sx={{
                             border: "0", 
                             fontWeight: "700",
                             backgroundColor: "#e1f9fc"
-                            }}>Mode</TableCell>
+                            }}>Checkout</TableCell>
+                        <TableCell sx={{
+                            border: "0", 
+                            fontWeight: "700",
+                            backgroundColor: "#e1f9fc"
+                            }}>Address</TableCell>
+                        <TableCell sx={{
+                            border: "0", 
+                            fontWeight: "700",
+                            backgroundColor: "#e1f9fc"
+                            }}>Phone</TableCell>
                         <TableCell sx={{
                             border: "0", 
                             fontWeight: "700",
@@ -65,14 +91,20 @@ function ViewTranspo({ transpos, toDate }) {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {transpos.map(transpo => {
+                    {accs.map(acc => {
                         return (
-                            <TableRow key={transpo.id}>
-                                <TableCell sx={{fontSize: "0.75em"}}>{transpo.direction}</TableCell>
-                                <TableCell sx={{fontSize: "0.75em"}}>{toDate(transpo.date.slice(0,10))}</TableCell>
+                            <TableRow key={acc.id}>
+                                <TableCell sx={{fontSize: "0.75em"}}>{acc.name} ({acc.acc_type})</TableCell>
+                                <TableCell sx={{fontSize: "0.75em"}}>{formatDateTime(acc.checkin)}</TableCell>
+                                <TableCell sx={{fontSize: "0.75em"}}>{formatDateTime(acc.checkout)}</TableCell>
+                                <TableCell sx={{fontSize: "0.75em"}}>{acc.address_1}, {acc.address_2? acc.address_2 + ",": null} {acc.city}, {acc.state} {acc.zip}</TableCell>
+                                <TableCell sx={{fontSize: "0.75em"}}>{acc.phone}</TableCell>
+                                <TableCell sx={{fontSize: "0.75em"}}>{acc.confirmation}</TableCell>
+                                <TableCell sx={{fontSize: "0.75em"}}>{acc.notes}</TableCell>
+                                {/* <TableCell sx={{fontSize: "0.75em"}}>{toDate(transpo.date.slice(0,10))}</TableCell>
                                 <TableCell sx={{fontSize: "0.75em"}}>{transpo.trans_mode}</TableCell>
                                 <TableCell sx={{fontSize: "0.75em"}}>{transpo.confirmation}</TableCell>
-                                <TableCell sx={{fontSize: "0.75em"}}>{transpo.notes}</TableCell>
+                                <TableCell sx={{fontSize: "0.75em"}}>{transpo.notes}</TableCell> */}
                             </TableRow>
                         )
                     })}
@@ -82,4 +114,4 @@ function ViewTranspo({ transpos, toDate }) {
     )
 }
 
-export default ViewTranspo;
+export default ViewAcc;

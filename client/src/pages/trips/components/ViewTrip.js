@@ -1,14 +1,12 @@
 import CheckBoxRoundedIcon from '@mui/icons-material/CheckBoxRounded';
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
-import HotelRoundedIcon from '@mui/icons-material/HotelRounded';
 import Divider from '@mui/material/Divider';
 import './viewtrip.css'
 import ViewFlight from './ViewFlight';
 import ViewTranspo from './ViewTranspo';
+import ViewAcc from './ViewAcc';
 
 function ViewTrip({ onClose, trip, setToggleEdit}) {
-    console.log(trip.flights)
-
     const formatDate = (dateString) => {
         const months = [
             'January',
@@ -66,12 +64,7 @@ function ViewTrip({ onClose, trip, setToggleEdit}) {
                     <div className="trip-addons">
                         {trip.flights.length > 0? <ViewFlight flights={trip.flights} toDate={formatDate}/> : null }
                         {trip.transportations.length > 0? <ViewTranspo transpos={trip.transportations} toDate={formatDate} /> : null}
-                        {/* <div className="view-transpos">
-                            <LocalTaxiRoundedIcon />
-                        </div>
-                        <div className="view-accommodations">
-                            <HotelRoundedIcon />
-                        </div> */}
+                        {trip.accommodations.length > 0? <ViewAcc accs={trip.accommodations} toDate={formatDate}/> : null}
                     </div>
                 </div>
                 <div className="modal-footer">

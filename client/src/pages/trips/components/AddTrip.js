@@ -150,9 +150,12 @@ function AddTrip({ show, onClose }) {
                                 body: JSON.stringify(transpo)
                             }).then(resp => resp.json())
                             .then(newTranspo => {
-                                console.log('submitted')
+                                transpo = newTranspo
                             })
                         })
+                        newTrip.transportations = updatedTranspoAdds;
+                    } else {
+                        newTrip.transportations = [];
                     }
 
                     if (accFormData.length > 0) {
@@ -174,7 +177,7 @@ function AddTrip({ show, onClose }) {
                         })
                     }
                     newTrip.flights = flightFormData;
-                    newTrip.transportations = transpoFormData;
+                    
                     newTrip.accommodations = accFormData;
                     dispatch(addTrip(newTrip))
                     discardModal()

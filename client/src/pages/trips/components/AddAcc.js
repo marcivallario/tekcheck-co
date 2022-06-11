@@ -2,10 +2,33 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 function AddAcc({ accFormData, setAccFormData }) {
 
+    function formatPhoneNumber(value) {
+        if (!value) return value;
+        const phoneNumber = value.replace(/[^\d]/g, '');
+        const phoneNumberLength = phoneNumber.length;
+
+        if (phoneNumberLength < 4) return phoneNumber;
+        if (phoneNumberLength < 7) {
+            return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+        }
+
+        return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
+            3,
+            6
+        )}-${phoneNumber.slice(6, 10)}`;
+
+    }
+
      function handleAccChange(e) {
         const updatedAcc = [...accFormData];
         updatedAcc[e.target.dataset.idx][e.target.name] = e.target.value;
         setAccFormData(updatedAcc);
+    }
+
+    function handlePhoneChange(e) {
+        const updatedAcc = [...accFormData];
+        updatedAcc[e.target.dataset.idx][e.target.name] = formatPhoneNumber(e.target.value);
+        setAccFormData(updatedAcc)
     }
 
     function deleteAdd(idx) {
@@ -78,7 +101,7 @@ function AddAcc({ accFormData, setAccFormData }) {
 
                         <div className="res-detail">
                             <label className="edit-label" htmlFor="phone">Phone:</label>
-                            <input data-idx={idx} value={accFormData[idx].phone} name="phone" onChange={handleAccChange}></input>
+                            <input data-idx={idx} value={accFormData[idx].phone} name="phone" onChange={handlePhoneChange}></input>
                         </div>
                         
 
