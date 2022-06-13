@@ -43,7 +43,7 @@ function AddAcc({ accFormData, setAccFormData }) {
                 <div className="accs" key={idx}>
                     <div className="add-header">
                         <h3 className="add-new">{accFormData[idx].name || "New Accommodation"}</h3>
-                        <CloseRoundedIcon sx={{cursor: "pointer"}} onClick={deleteAdd}/>
+                        <CloseRoundedIcon sx={{cursor: "pointer"}} onClick={() => deleteAdd(idx)}/>
                     </div>
                     <div className="acc-add">
                         <div className="acc-detail">

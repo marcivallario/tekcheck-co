@@ -101,10 +101,6 @@ function ViewAcc({ accs, toDate }) {
                                 <TableCell sx={{fontSize: "0.75em"}}>{acc.phone}</TableCell>
                                 <TableCell sx={{fontSize: "0.75em"}}>{acc.confirmation}</TableCell>
                                 <TableCell sx={{fontSize: "0.75em"}}>{acc.notes}</TableCell>
-                                {/* <TableCell sx={{fontSize: "0.75em"}}>{toDate(transpo.date.slice(0,10))}</TableCell>
-                                <TableCell sx={{fontSize: "0.75em"}}>{transpo.trans_mode}</TableCell>
-                                <TableCell sx={{fontSize: "0.75em"}}>{transpo.confirmation}</TableCell>
-                                <TableCell sx={{fontSize: "0.75em"}}>{transpo.notes}</TableCell> */}
                             </TableRow>
                         )
                     })}

@@ -9,8 +9,7 @@ function ViewEditTrip({ onClose, show, trip }) {
     }
 
     if (toggleEdit) {
-        // return <EditProject onClose={onClose} project={project} setToggleEdit={setToggleEdit}/>
-        return <EditTrip />
+        return <EditTrip onClose={onClose} trip={trip} setToggleEdit={setToggleEdit}/>
     } else {
         return <ViewTrip onClose={onClose} trip={trip} setToggleEdit={setToggleEdit} />
     }

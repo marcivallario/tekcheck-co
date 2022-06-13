@@ -6,8 +6,6 @@ import TableRow from '@mui/material/TableRow';
 import LocalTaxiRoundedIcon from '@mui/icons-material/LocalTaxiRounded';
 
 function ViewTranspo({ transpos, toDate }) {
-    console.log(transpos)
-
     return (
         <div className="view-transpos">
             <Table 

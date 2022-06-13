@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateProject } from '../../../state/slices/projectsSlice'
 
 function EditProject({ project, onClose, setToggleEdit}) {
-    const dispatch = useDispatch({ project });
+    const dispatch = useDispatch();
     const userId = useSelector(state => state.user.currentUser.id)
     const [ formData, setFormData ] = useState({
         user_id: userId,
@@ -74,7 +74,7 @@ function EditProject({ project, onClose, setToggleEdit}) {
         <div className="modal">
             <div className="modal-content">
                 <div className="modal-header">
-                    <h3 className="modal-title">Add Project</h3>
+                    <h3 className="modal-title">Edit Project</h3>
                 </div>
                 <div className="modal-body">
                     <form id="add-project">
