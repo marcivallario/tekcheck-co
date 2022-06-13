@@ -1,6 +1,6 @@
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
-function AddAcc({ accFormData, setAccFormData }) {
+function AddAcc({ accFormData, setAccFormData, delAccs, setDelAccs }) {
 
     function formatPhoneNumber(value) {
         if (!value) return value;
@@ -33,7 +33,8 @@ function AddAcc({ accFormData, setAccFormData }) {
 
     function deleteAdd(idx) {
         let updatedAccList = [...accFormData]
-        updatedAccList.splice(idx, 1)
+        const deletedAcc = updatedAccList.splice(idx, 1)
+        if (delAccs) setDelAccs([...deletedAcc])
         setAccFormData(updatedAccList)
     }
 

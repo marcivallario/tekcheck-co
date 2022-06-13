@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateTrip } from '../../../state/slices/tripsSlice';
-import { removeFlight } from '../../../state/slices/tripsSlice';
-import { updateFlight } from '../../../state/slices/tripsSlice';
-import { updateTranspo } from '../../../state/slices/tripsSlice';
-import { removeTranspo } from '../../../state/slices/tripsSlice';
+import { 
+    updateTrip,
+    removeFlight,
+    updateFlight,
+    updateTranspo,
+    removeTranspo,
+    updateAcc,
+    removeAcc
+ } from '../../../state/slices/tripsSlice';
 import Divider from '@mui/material/Divider';
 // import FlightRoundedIcon from '@mui/icons-material/FlightRounded';
 // import LocalTaxiRoundedIcon from '@mui/icons-material/LocalTaxiRounded';
@@ -141,7 +145,33 @@ function EditTrip({ setToggleEdit, trip, onClose}) {
                             .then(dispatch(removeTranspo(transpo)));
                         })
                     }
-                    
+
+                    if (accFormData.length > 0) {
+                        accFormData.forEach(acc => {
+                            fetch(`/accommodations/${acc.id}`, {
+                                method: 'PATCH',
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify(acc)
+                            }).then(resp => resp.json())
+                            .then(updatedAcc => {
+                                dispatch(updateAcc(updatedAcc))
+                            })
+                        })
+                    }
+
+                    if (delAccs.length > 0) {
+                        delAccs.forEach(acc => {
+                            fetch(`/accommodations/${acc.id}`, {
+                                method: 'DELETE'
+                                })
+                            .then(dispatch(removeAcc(acc)));
+                        })
+                    }
+                    updatedTrip.flights = flightFormData
+                    updatedTrip.transportations = transpoFormData
+                    updatedTrip.accommodations = accFormData
                     dispatch(updateTrip(updatedTrip))
                     onClose()
                     setToggleEdit(false)
@@ -210,7 +240,7 @@ function EditTrip({ setToggleEdit, trip, onClose}) {
 
                         <AddFlight flightFormData={flightFormData} setFlightFormData={setFlightFormData} delFlights={delFlights} setDelFlights={setDelFlights} />
                         <AddTranspo transpoFormData={transpoFormData} setTranspoFormData={setTranspoFormData} delTranspos={delTranspos} setDelTranspos={setDelTranspos}/>
-                        <AddAcc accFormData={accFormData} setAccFormData={setAccFormData} />
+                        <AddAcc accFormData={accFormData} setAccFormData={setAccFormData} delAccs={delAccs} setDelAccs={setDelAccs}/>
                     </form>
                 </div>
                 <div className="modal-footer">
