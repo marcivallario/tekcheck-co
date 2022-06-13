@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateTrip } from '../../../state/slices/tripsSlice';
 import { removeFlight } from '../../../state/slices/tripsSlice';
 import { updateFlight } from '../../../state/slices/tripsSlice';
+import { updateTranspo } from '../../../state/slices/tripsSlice';
+import { removeTranspo } from '../../../state/slices/tripsSlice';
 import Divider from '@mui/material/Divider';
 // import FlightRoundedIcon from '@mui/icons-material/FlightRounded';
 // import LocalTaxiRoundedIcon from '@mui/icons-material/LocalTaxiRounded';
@@ -115,7 +117,31 @@ function EditTrip({ setToggleEdit, trip, onClose}) {
                             .then(dispatch(removeFlight(flight)));
                         })
                     }
-                    updatedTrip.flights = flightFormData;
+
+                    if (transpoFormData.length > 0) {
+                        transpoFormData.forEach(transpo => {
+                            fetch(`/transportations/${transpo.id}`, {
+                                method: 'PATCH',
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify(transpo)
+                            }).then(resp => resp.json())
+                            .then(updatedTranspo => {
+                                dispatch(updateTranspo(updatedTranspo))
+                            })
+                        })
+                    }
+
+                    if (delTranspos.length > 0) {
+                        delTranspos.forEach(transpo => {
+                            fetch(`/transportations/${transpo.id}`, {
+                                method: 'DELETE'
+                                })
+                            .then(dispatch(removeTranspo(transpo)));
+                        })
+                    }
+                    
                     dispatch(updateTrip(updatedTrip))
                     onClose()
                     setToggleEdit(false)
@@ -183,7 +209,7 @@ function EditTrip({ setToggleEdit, trip, onClose}) {
                         <Divider sx={{marginTop: "1em", marginBottom: "1em"}}/>
 
                         <AddFlight flightFormData={flightFormData} setFlightFormData={setFlightFormData} delFlights={delFlights} setDelFlights={setDelFlights} />
-                        <AddTranspo transpoFormData={transpoFormData} setTranspoFormData={setTranspoFormData}/>
+                        <AddTranspo transpoFormData={transpoFormData} setTranspoFormData={setTranspoFormData} delTranspos={delTranspos} setDelTranspos={setDelTranspos}/>
                         <AddAcc accFormData={accFormData} setAccFormData={setAccFormData} />
                     </form>
                 </div>

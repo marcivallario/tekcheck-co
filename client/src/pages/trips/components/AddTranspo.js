@@ -1,6 +1,6 @@
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
-function AddTranspo({ transpoFormData, setTranspoFormData }) {
+function AddTranspo({ transpoFormData, setTranspoFormData, delTranspos, setDelTranspos }) {
 
     function handleTranspoChange(e) {
         const updatedTranspo = [...transpoFormData];
@@ -10,7 +10,8 @@ function AddTranspo({ transpoFormData, setTranspoFormData }) {
 
     function deleteAdd(idx) {
         let updatedTranspoList = [...transpoFormData]
-        updatedTranspoList.splice(idx, 1)
+        const deletedTranspo = updatedTranspoList.splice(idx, 1)
+        if (delTranspos) setDelTranspos([...deletedTranspo])
         setTranspoFormData(updatedTranspoList)
     }
 

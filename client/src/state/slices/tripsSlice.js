@@ -61,6 +61,32 @@ const tripsSlice = createSlice({
           return trip
         }
       })
+    },
+    updateTranspo: (state, action) => {
+      state.tripsList = state.tripsList.map(trip => {
+        if (trip.id === action.payload.trip_id) {
+          trip.transportations = trip.transportations.map(transpo => {
+            if (transpo.id === action.payload.id) {
+              return action.payload
+            } else {
+              return transpo
+            }
+          })
+          return trip
+        } else {
+          return trip
+        }
+      })
+    },
+    removeTranspo: (state, action) => {
+      state.tripsList = state.tripsList.map(trip => {
+        if (trip.id === action.payload.trip_id) {
+          trip.transportations = trip.transportations.filter(transpo => transpo.id !== action.payload.id)
+          return trip
+        } else {
+          return trip
+        }
+      })
     }
   },
   extraReducers: {
@@ -80,6 +106,6 @@ const tripsSlice = createSlice({
   },
 });
 
-export const { addTrip, removeTrip, updateTrip, updateFlight, removeFlight } = tripsSlice.actions;
+export const { addTrip, removeTrip, updateTrip, updateFlight, removeFlight, updateTranspo, removeTranspo } = tripsSlice.actions;
 
 export default tripsSlice.reducer;
