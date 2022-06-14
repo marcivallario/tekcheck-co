@@ -28,6 +28,13 @@
 #boarding-wrapper {
     position: relative;
     max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#boarding-wrapper h5 {
+    margin-top: 45%;
 }
 
 .alice-carousel {
@@ -77,8 +84,12 @@
     }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
     #active-projects {
         height: auto;
+    }
+
+     #boarding-wrapper h5 {
+        margin: 2em 0;
     }
 }

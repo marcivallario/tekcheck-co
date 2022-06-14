@@ -5,16 +5,41 @@ import CompletedTrips from './components/CompletedTrips';
 import TotalProjects from './components/TotalProjects';
 import TotalPassengers from './components/TotalPassengers';
 import TripsInProgress from './components/TripsInProgress';
+import { useSelector } from 'react-redux';
 import './dashboard.css';
 
-let items = [
-    <BoardingPass />,
-    <BoardingPass />,
-    <BoardingPass />,
-    <BoardingPass />
-]
-
 function Dashboard() {
+    const trips = useSelector(state => state.trips.tripsList)
+
+    function checkTime(dep_time) {
+        const then = new Date(dep_time);
+        const now = new Date();
+
+        const msBetweenDates = (then.getTime() - now.getTime());
+        const hoursBetweenDates = msBetweenDates / (60 * 60 * 1000);
+
+        if (hoursBetweenDates < 24 && hoursBetweenDates > 0) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    let upcomingTrips = [];
+    trips.forEach(trip => {
+        if (trip.flights.length > 0) {
+            let upcomingFlights = trip.flights.filter(flight => checkTime(flight.dep_time))
+            if (upcomingFlights.length > 0) upcomingTrips.push({...trip, flights: upcomingFlights})
+        }
+    })
+
+    let items = [];
+    upcomingTrips.forEach(trip => {
+        trip.flights.map(flight => {
+            items.push(<BoardingPass key={flight.id} flight={flight} passenger={trip.passenger} />)
+        })
+    })
+    
     return (
         <div id="dashboard">
             <div className="row">
@@ -24,6 +49,7 @@ function Dashboard() {
                             <h3>Flights Within 24 Hours</h3>
                         </div>
                         <div id="boarding-wrapper">
+                            {items.length > 0 ?
                             <AliceCarousel 
                                 mouseTracking 
                                 autoWidth 
@@ -32,7 +58,7 @@ function Dashboard() {
                                 paddingLeft={27}
                                 paddingRight={57}
                                 items={items} 
-                            />
+                            /> : <h5>No upcoming flights!</h5>}
                         </div>
                     </div>
                 </div>

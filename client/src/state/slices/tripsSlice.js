@@ -36,6 +36,16 @@ const tripsSlice = createSlice({
         }
       })
     },
+    addFlight: (state, action) => {
+      state.tripsList = state.tripsList.map(trip => {
+        if (trip.id === action.payload.trip_id) {
+          trip.flights.push(action.payload)
+          return trip
+        } else {
+          return trip
+        }
+      })
+    },
     updateFlight: (state, action) => {
       state.tripsList = state.tripsList.map(trip => {
         if (trip.id === action.payload.trip_id) {
@@ -62,6 +72,16 @@ const tripsSlice = createSlice({
         }
       })
     },
+    addTranspo: (state, action) => {
+      state.tripsList = state.tripsList.map(trip => {
+        if (trip.id === action.payload.trip_id) {
+          trip.transportations.push(action.payload)
+          return trip
+        } else {
+          return trip
+        }
+      })
+    },
     updateTranspo: (state, action) => {
       state.tripsList = state.tripsList.map(trip => {
         if (trip.id === action.payload.trip_id) {
@@ -82,6 +102,16 @@ const tripsSlice = createSlice({
       state.tripsList = state.tripsList.map(trip => {
         if (trip.id === action.payload.trip_id) {
           trip.transportations = trip.transportations.filter(transpo => transpo.id !== action.payload.id)
+          return trip
+        } else {
+          return trip
+        }
+      })
+    },
+    addAcc: (state, action) => {
+      state.tripsList = state.tripsList.map(trip => {
+        if (trip.id === action.payload.trip_id) {
+          trip.accommodations.push(action.payload)
           return trip
         } else {
           return trip
@@ -132,6 +162,18 @@ const tripsSlice = createSlice({
   },
 });
 
-export const { addTrip, removeTrip, updateTrip, updateFlight, removeFlight, updateTranspo, removeTranspo, updateAcc, removeAcc } = tripsSlice.actions;
+export const { 
+  addTrip, 
+  removeTrip, 
+  updateTrip, 
+  addFlight, 
+  updateFlight, 
+  removeFlight, 
+  addTranspo,
+  updateTranspo, 
+  removeTranspo, 
+  addAcc,
+  updateAcc, 
+  removeAcc } = tripsSlice.actions;
 
 export default tripsSlice.reducer;

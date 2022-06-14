@@ -2,23 +2,45 @@ import ArrowRightAltRoundedIcon from '@mui/icons-material/ArrowRightAltRounded';
 import FlightTakeoffRoundedIcon from '@mui/icons-material/FlightTakeoffRounded';
 import "./boardingpass.css";
 
-function BoardingPass() {
+function BoardingPass({ flight, passenger }) {
+    const formatDate = (dateString) => {
+        const months = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December'
+        ]
+       const d = new Date(dateString)
+       const year = d.getFullYear()
+       const date = d.getDate() + 1
+       const month = months[d.getMonth()]
+       return `${month} ${date}, ${year}`
+    }
+
     return (
         <div className="boarding-pass">
             <header>
                 <div className="passenger">
                     <small>Passenger</small>
-                    <strong>Doe, John</strong>
+                    <strong>{passenger.legal_last_name}, {passenger.legal_first_name}</strong>
                 </div>
                 <div className="flight">
                     <small>flight</small>
-                    <strong>FL 123</strong>
+                    <strong>{flight.flight_no}</strong>
                 </div>
             </header>
             <section className="cities">
                 <div className="city">
                     <small>Dep City Name</small>
-                    <strong>DCN</strong>
+                    <strong>{flight.dep_airport}</strong>
                 </div>
                 <ArrowRightAltRoundedIcon sx={{ 
                     color: "black",
@@ -27,28 +49,28 @@ function BoardingPass() {
                     top: "11px" }}/>
                 <div className="city">
                     <small>Arr City Name</small>
-                    <strong>ACN</strong>
+                    <strong>{flight.arr_airport}</strong>
                 </div>
             </section>
             <section className="infos">
                 <div className="details">
                     <div className="box">
                         <small>Conf</small>
-                        <strong>C3</strong>
+                        <strong>{flight.confirmation}</strong>
                     </div>
                     <div className="box">
                         <small>Seat</small>
-                        <strong>14B</strong>
+                        <strong>{flight.seat}</strong>
                     </div>
                 </div>
                 <div className="times">
                     <div className="box">
                         <small>Departure</small>
-                        <strong>11:35</strong>
+                        <strong>{flight.dep_time.substring(11,16)}</strong>
                     </div>
                     <div className="box">
                         <small>Arrival</small>
-                        <strong>13:50</strong>
+                        <strong>{flight.arr_time.substring(11,16)}</strong>
                     </div>
                 </div>
             </section>
@@ -56,11 +78,11 @@ function BoardingPass() {
                 <div className="box">
                     <div className="passenger">
                         <small>Airline</small>
-                        <strong>Delta Airlines</strong>
+                        <strong>{flight.airline}</strong>
                     </div>
                     <div className="date">
                         <small>Date</small>
-                        <strong>Mon, 1 Jan 2015</strong>
+                        <strong>{formatDate(flight.dep_time.substring(0,10))}</strong>
                     </div>
                 </div>
                 

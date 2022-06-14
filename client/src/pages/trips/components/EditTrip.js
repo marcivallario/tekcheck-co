@@ -10,9 +10,6 @@ import {
     removeAcc
  } from '../../../state/slices/tripsSlice';
 import Divider from '@mui/material/Divider';
-// import FlightRoundedIcon from '@mui/icons-material/FlightRounded';
-// import LocalTaxiRoundedIcon from '@mui/icons-material/LocalTaxiRounded';
-// import HotelRoundedIcon from '@mui/icons-material/HotelRounded';
 import AddFlight from './AddFlight';
 import AddTranspo from './AddTranspo';
 import AddAcc from './AddAcc';
@@ -113,7 +110,6 @@ function EditTrip({ setToggleEdit, trip, onClose}) {
                     }
 
                     if (delFlights.length > 0) {
-                        console.log('Del Flights', delFlights)
                         delFlights.forEach(flight => {
                             fetch(`/flights/${flight.id}`, {
                                 method: 'DELETE'
