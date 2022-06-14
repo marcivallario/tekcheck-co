@@ -6,7 +6,7 @@ TrekCheck is an app for tracking trip lodging, transportation, & accommodation a
 The inspiration for TrekCheck came when working as a travel coordinator in film & television. The pure amount of data was overwhelming and all was tracked via a giant Google Sheet—-I cataloged features for an app I could build that would separate and handle this data to only serve me what I needed.
 
 ## Project Video
-Coming soon.
+View project demo [here](https://www.youtube.com/watch?v=tnjVqnLqaeM&ab_channel=MarciVallario).
 
 ## Tech / Frameworks Used
 
