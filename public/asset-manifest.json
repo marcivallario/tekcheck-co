@@ -1,15 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.e6c13ad2.css",
-    "main.js": "/static/js/main.fc539b48.js",
+    "main.css": "/static/css/main.8f0e95dc.css",
+    "main.js": "/static/js/main.93ca6792.js",
     "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
+    "static/media/404-background-02.jpg": "/static/media/404-background-02.1de36d532b38fab1d609.jpg",
+    "static/media/banner.jpg": "/static/media/banner.1503229a02bf90f57ddd.jpg",
+    "static/media/logo_orange.png": "/static/media/logo_orange.41625c10d37658e00d2d.png",
     "index.html": "/index.html",
-    "main.e6c13ad2.css.map": "/static/css/main.e6c13ad2.css.map",
-    "main.fc539b48.js.map": "/static/js/main.fc539b48.js.map",
+    "main.8f0e95dc.css.map": "/static/css/main.8f0e95dc.css.map",
+    "main.93ca6792.js.map": "/static/js/main.93ca6792.js.map",
     "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6c13ad2.css",
-    "static/js/main.fc539b48.js"
+    "static/css/main.8f0e95dc.css",
+    "static/js/main.93ca6792.js"
   ]
 }
