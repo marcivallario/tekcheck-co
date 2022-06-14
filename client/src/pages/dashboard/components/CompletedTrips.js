@@ -9,8 +9,6 @@ function CompletedTrips() {
     const completeTrips = trips.tripsList.filter(trip => {
         let completeDate = new Date(trip.return)
         let today = new Date()
-        console.log(completeDate)
-        console.log(today)
         return completeDate < today
     }).length
 
