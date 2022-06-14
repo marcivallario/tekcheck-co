@@ -10,6 +10,12 @@ class TransportationsController < ApplicationController
         render json: transpo, status: :ok
     end
 
+    def destroy
+        transpo = Transportation.find_by!(id: params[:id])
+        transpo.destroy
+        head :no_content
+    end
+
     private 
 
     def transpo_params

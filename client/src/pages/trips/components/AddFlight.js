@@ -1,6 +1,6 @@
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
-function AddFlight({ flightFormData, setFlightFormData }) {
+function AddFlight({ flightFormData, setFlightFormData, delFlights, setDelFlights }) {
 
     function handleFlightChange(e) {
         const updatedFlights = [...flightFormData];
@@ -10,7 +10,8 @@ function AddFlight({ flightFormData, setFlightFormData }) {
 
     function deleteAdd(idx) {
         let updatedFlightList = [...flightFormData]
-        updatedFlightList.splice(idx, 1)
+        const deletedFlight = updatedFlightList.splice(idx, 1)
+        if (delFlights) setDelFlights([...deletedFlight])
         setFlightFormData(updatedFlightList)
     }
 
@@ -20,7 +21,7 @@ function AddFlight({ flightFormData, setFlightFormData }) {
                 <div className="flights" key={idx}>
                     <div className="add-header">
                         <h3 className="add-new">{flightFormData[idx].leg || "New Flight"}</h3>
-                        <CloseRoundedIcon sx={{cursor: "pointer"}} onClick={deleteAdd}/>
+                        <CloseRoundedIcon sx={{cursor: "pointer"}} onClick={() => deleteAdd(idx)}/>
                     </div>
                     
                     <div className="flight-add">

@@ -1,6 +1,6 @@
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
-function AddTranspo({ transpoFormData, setTranspoFormData }) {
+function AddTranspo({ transpoFormData, setTranspoFormData, delTranspos, setDelTranspos }) {
 
     function handleTranspoChange(e) {
         const updatedTranspo = [...transpoFormData];
@@ -10,7 +10,8 @@ function AddTranspo({ transpoFormData, setTranspoFormData }) {
 
     function deleteAdd(idx) {
         let updatedTranspoList = [...transpoFormData]
-        updatedTranspoList.splice(idx, 1)
+        const deletedTranspo = updatedTranspoList.splice(idx, 1)
+        if (delTranspos) setDelTranspos([...deletedTranspo])
         setTranspoFormData(updatedTranspoList)
     }
 
@@ -20,35 +21,35 @@ function AddTranspo({ transpoFormData, setTranspoFormData }) {
                 <div className="transpos" key={idx}>
                     <div className="add-header">
                         <h3 className="add-new">{transpoFormData[idx].direction || "New Transportation"}</h3>
-                        <CloseRoundedIcon sx={{cursor: "pointer"}} onClick={deleteAdd}/>
+                        <CloseRoundedIcon sx={{cursor: "pointer"}} onClick={() => deleteAdd(idx)}/>
                     </div>
                     <div className="transpo-add">
                         <div className="transpo-detail">
                             <label className="edit-label" htmlFor="direction">Direction:</label>
-                            <input data-idx={idx} value={transpoFormData.direction} name="direction" onChange={handleTranspoChange}></input>
+                            <input data-idx={idx} value={transpoFormData[idx].direction} name="direction" onChange={handleTranspoChange}></input>
                         </div>
                         
                         <div className="transpo-detail">
                             <label className="edit-label" htmlFor="date">Date: </label>
-                            <input data-idx={idx} type="date" value={transpoFormData.date} name="date" min="1900-01-01" onChange={handleTranspoChange}/>
+                            <input data-idx={idx} type="date" value={transpoFormData[idx].date} name="date" min="1900-01-01" onChange={handleTranspoChange}/>
                         </div>
                         
 
                         <div className="transpo-detail">
                             <label className="edit-label" htmlFor="trans_mode">Mode:</label>
-                            <input data-idx={idx} value={transpoFormData.trans_mode} name="trans_mode" onChange={handleTranspoChange}></input>
+                            <input data-idx={idx} value={transpoFormData[idx].trans_mode} name="trans_mode" onChange={handleTranspoChange}></input>
                         </div>
                         
 
                         <div className="transpo-detail">
                             <label className="edit-label" htmlFor="confirmation">Confirmation:</label>
-                            <input data-idx={idx} value={transpoFormData.confirmation} name="confirmation" onChange={handleTranspoChange}></input>
+                            <input data-idx={idx} value={transpoFormData[idx].confirmation} name="confirmation" onChange={handleTranspoChange}></input>
                         </div>
                         
 
                         <div className="transpo-notes">
                             <label className="edit-label" htmlFor="notes">Notes:</label>
-                            <textarea  data-idx={idx} value={transpoFormData.notes} name="notes" onChange={handleTranspoChange}></textarea>
+                            <textarea  data-idx={idx} value={transpoFormData[idx].notes} name="notes" onChange={handleTranspoChange}></textarea>
                         </div>
                     </div>
                 </div>

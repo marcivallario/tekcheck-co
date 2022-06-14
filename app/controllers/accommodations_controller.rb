@@ -10,6 +10,12 @@ class AccommodationsController < ApplicationController
         render json: acc, status: :ok
     end
 
+    def destroy
+        acc = Accommodation.find_by!(id: params[:id])
+        acc.destroy
+        head :no_content
+    end
+
     private 
 
     def acc_params

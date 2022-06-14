@@ -1,6 +1,23 @@
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
-function AddAcc({ accFormData, setAccFormData }) {
+function AddAcc({ accFormData, setAccFormData, delAccs, setDelAccs }) {
+
+    function formatPhoneNumber(value) {
+        if (!value) return value;
+        const phoneNumber = value.replace(/[^\d]/g, '');
+        const phoneNumberLength = phoneNumber.length;
+
+        if (phoneNumberLength < 4) return phoneNumber;
+        if (phoneNumberLength < 7) {
+            return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+        }
+
+        return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
+            3,
+            6
+        )}-${phoneNumber.slice(6, 10)}`;
+
+    }
 
      function handleAccChange(e) {
         const updatedAcc = [...accFormData];
@@ -8,9 +25,16 @@ function AddAcc({ accFormData, setAccFormData }) {
         setAccFormData(updatedAcc);
     }
 
+    function handlePhoneChange(e) {
+        const updatedAcc = [...accFormData];
+        updatedAcc[e.target.dataset.idx][e.target.name] = formatPhoneNumber(e.target.value);
+        setAccFormData(updatedAcc)
+    }
+
     function deleteAdd(idx) {
         let updatedAccList = [...accFormData]
-        updatedAccList.splice(idx, 1)
+        const deletedAcc = updatedAccList.splice(idx, 1)
+        if (delAccs) setDelAccs([...deletedAcc])
         setAccFormData(updatedAccList)
     }
 
@@ -20,7 +44,7 @@ function AddAcc({ accFormData, setAccFormData }) {
                 <div className="accs" key={idx}>
                     <div className="add-header">
                         <h3 className="add-new">{accFormData[idx].name || "New Accommodation"}</h3>
-                        <CloseRoundedIcon sx={{cursor: "pointer"}} onClick={deleteAdd}/>
+                        <CloseRoundedIcon sx={{cursor: "pointer"}} onClick={() => deleteAdd(idx)}/>
                     </div>
                     <div className="acc-add">
                         <div className="acc-detail">
@@ -78,7 +102,7 @@ function AddAcc({ accFormData, setAccFormData }) {
 
                         <div className="res-detail">
                             <label className="edit-label" htmlFor="phone">Phone:</label>
-                            <input data-idx={idx} value={accFormData[idx].phone} name="phone" onChange={handleAccChange}></input>
+                            <input data-idx={idx} value={accFormData[idx].phone} name="phone" onChange={handlePhoneChange}></input>
                         </div>
                         
 

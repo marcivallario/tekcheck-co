@@ -12,6 +12,12 @@ class FlightsController < ApplicationController
         render json: flight, status: :ok
     end
 
+    def destroy
+        flight = Flight.find_by!(id: params[:id])
+        flight.destroy
+        head :no_content
+    end
+
     private 
 
     def flight_params
