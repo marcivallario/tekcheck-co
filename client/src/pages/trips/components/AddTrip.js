@@ -6,7 +6,7 @@ import HotelRoundedIcon from '@mui/icons-material/HotelRounded';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { addTrip } from '../../../state/slices/tripsSlice';
+import { addTrip, addFlight, addTranspo, addAcc } from '../../../state/slices/tripsSlice';
 import './addtrip.css'
 import AddFlight from './AddFlight';
 import AddTranspo from './AddTranspo';
@@ -117,6 +117,8 @@ function AddTrip({ show, onClose }) {
                 resp.json().then(resp => setErrors([...resp.errors]))
             } else {
                 resp.json().then(newTrip => {
+                    dispatch(addTrip(newTrip))
+
                     if (flightFormData.length > 0) {
                         const updatedFlightAdds = flightFormData.map(flight => {
                             flight.trip_id = newTrip.id
@@ -131,7 +133,7 @@ function AddTrip({ show, onClose }) {
                                 body: JSON.stringify(flight)
                             }).then(resp => resp.json())
                             .then(newFlight => {
-                                console.log('submitted')
+                                dispatch(addFlight(newFlight))
                             })
                         })
                     }
@@ -150,13 +152,10 @@ function AddTrip({ show, onClose }) {
                                 body: JSON.stringify(transpo)
                             }).then(resp => resp.json())
                             .then(newTranspo => {
-                                transpo = newTranspo
+                                dispatch(addTranspo(newTranspo))
                             })
                         })
-                        newTrip.transportations = updatedTranspoAdds;
-                    } else {
-                        newTrip.transportations = [];
-                    }
+                    } 
 
                     if (accFormData.length > 0) {
                         const updatedAccAdds = accFormData.map(acc => {
@@ -172,14 +171,10 @@ function AddTrip({ show, onClose }) {
                                 body: JSON.stringify(acc)
                             }).then(resp => resp.json())
                             .then(newAcc => {
-                                console.log('submitted')
+                                dispatch(addAcc(newAcc))
                             })
                         })
                     }
-                    newTrip.flights = flightFormData;
-                    
-                    newTrip.accommodations = accFormData;
-                    dispatch(addTrip(newTrip))
                     discardModal()
                 })
             }
